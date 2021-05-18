@@ -1,0 +1,23 @@
+{% extends 'v2/base.html.twig' %}
+
+{% block videofon %}
+    {% embed 'v2/embed/video_fone.html.twig'%}
+    {% endembed %}
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ include('elements/_navigation.html.twig') }}
+{% endblock %}
+
+{% block body %}
+    {{ service_text(page.text) }}
+    {{ include('v2/blocks/section/auto-brands.html.twig') }}
+
+    {{ price_list(page) }}
+    {{ include('elements/_gallery.html.twig') }}
+    {{ include('elements/_promotions.html.twig') }}
+    {{ include('elements/_advantages.html.twig') }}
+
+
+
+{% endblock %}
