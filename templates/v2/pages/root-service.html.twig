@@ -12,18 +12,23 @@
         </div>
 
                         {{ include('elements/_promotions.html.twig') }}
-
-                                {{ price_list(page) }}
-        {{ include('elements/_advantages.html.twig') }}
-
-        {{ service_text(textParts[1]) }}
-
-        <div class="container container2">
-                <div class="row">
-                        <div class="col-sm-12 col-lg-12">
-                                {{ brands_service_block(page.path) }}
+                        
+                        <div class="price-list-orders__wrapper">
+                            {{ price_list(page) }}
                         </div>
-                </div>
-        </div>
+
+                        {{ include('elements/_advantages.html.twig') }}
+
+                        {{ service_text(textParts[1]) }}
+
+       <div class="brands-service-block__wrapper">
+            <div class="container container2">
+                    <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                    {{ brands_service_block(page.path) }}
+                            </div>
+                    </div>
+            </div>
+    </div>
 
 {% endblock %}

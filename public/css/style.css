@@ -1219,17 +1219,21 @@ button {
     }
 }
 
+/* */
 .brands-list__block_item{
-    margin-bottom: 10px;
+    padding-bottom: 15px;
 }
 
-/* Rootservice Page */
-h1.title{
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 36px;
-    overflow: hidden;
-    text-align: center;
-    text-transform: uppercase;
-    padding-top: 30px;
+.block_content li{
+    display: list-item;
+    width:auto;
+    text-align: left;
+    list-style-type: square !important;
+}
+.brands-service-block__wrapper{
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+.price-list-orders__wrapper{
+    padding:60px 0;
 }
