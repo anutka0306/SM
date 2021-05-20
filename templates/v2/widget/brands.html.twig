@@ -5,10 +5,11 @@
             {% for row in items|batch(10) %}
             <div class="col-md-2">
                 {% for brand in row %}
+
                     {% if service.slug %}
                         <div class="price-title brands-list__block_item"><a href="{{ service.slug}}{{ brand.path[1:] }}">{{ brand.name }}</a></div>
                     {% else %}
-                        <div class="price-title brands-list__block_item"><a href="/remont{{ brand.path }}">{{ brand.name }}</a></div>
+                        <div class="price-title brands-list__block_item"><a href="{{ brand.path }}">{{ brand.name }}</a></div>
                     {% endif %}
                 {% endfor %}
             </div>

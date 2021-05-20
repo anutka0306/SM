@@ -34,6 +34,14 @@ class Content implements PageInterface
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+    
+     /**
+     * @var int
+     * 
+     * @ORM\Column(name="brand_id", type="integer", nullable=true)
+     * 
+     */
+    protected $brand_id;
 
     /**
      * @var string|null
@@ -242,5 +250,17 @@ class Content implements PageInterface
         if (empty($this->parent)) {
 
         }
+    }
+
+    public function getBrandId(): ?int
+    {
+        return $this->brand_id;
+    }
+
+    public function setBrandId(?int $brand_id): self
+    {
+        $this->brand_id = $brand_id;
+
+        return $this;
     }
 }

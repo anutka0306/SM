@@ -53,6 +53,7 @@ class PriceBrand
      * @ORM\OneToMany(targetEntity="PriceModel",mappedBy="priceBrand")
      */
     private $priceModels;
+    
 
     /**
      * @ORM\Column(type="integer")

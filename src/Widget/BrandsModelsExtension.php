@@ -84,7 +84,8 @@ class BrandsModelsExtension extends AbstractExtension
     public function brands_service_block(Environment $twig, $service = null): string
     {
             $item = $this->cache->getItem('brands_block');
-            $items = $this->brand_repository->findBy([], ['name' => 'asc']);
+            $items = $this->brand_repository->findAllWithPath();
+        
             if(!$service) {
                 $services = $this->service_repository->findAll();
             }else{

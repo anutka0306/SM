@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Content;
 use App\Entity\PriceBrand;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -60,6 +63,27 @@ class PriceBrandRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
+    
+    public function findAllWithPath():array
+    {
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addScalarResult('name', 'name', 'string');
+        $rsm->addScalarResult('path', 'path', 'string');
+
+        $sql = "
+            SELECT b.name, c.path
+            FROM price__brand b
+            JOIN content c on b.id = c.brand_id 
+            ORDER BY b.name ASC 
+        ";
+
+        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+       return $query->getResult();
+    }
+    
 
     // /**
     //  * @return PriceBrand[] Returns an array of PriceBrand objects
