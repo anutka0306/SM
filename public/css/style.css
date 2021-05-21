@@ -1237,3 +1237,65 @@ button {
 .price-list-orders__wrapper{
     padding:60px 0;
 }
+
+/* Brand Page */
+.catalog-v2 {
+    display: flex;
+    flex-direction: column;
+}
+.catalog-v2 img {
+    margin: 20px auto;
+}
+.big-image {
+    box-shadow: -5px 5px 15px rgb(138 136 136 / 47%);
+}
+.table-style2 {
+    border-collapse: collapse;
+    font-size: 16px;
+    width: 100%;
+}
+.table-style2 tr:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+.table-style2 tr:first-child {
+    background: #bd0707;
+    color: #fff;
+}
+.table-style2 td {
+    padding-bottom: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 10px;
+}
+.catalog-v2 p {
+    margin-bottom: 26px;
+}
+.catalog-v2 th p {
+    text-align: center;
+}
+.red {
+    color: #bd0707;
+    font-weight: bold;
+}
+table, th, td{
+    border: 1px solid #333333;
+}
+
+.mod {
+    font-weight: bold;
+}
+.ul-style2 {
+    display: table;
+    list-style: none;
+}
+.ul-style2 li {
+    margin-bottom: 15px;
+    padding-left: 24px;
+    position: relative;
+    font-style: italic;
+    display: list-item;
+    width:auto;
+    text-align: left;
+    list-style-type: square !important;
+}

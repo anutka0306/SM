@@ -83,7 +83,7 @@ class PriceBrandRepository extends ServiceEntityRepository
 
        return $query->getResult();
     }
-    
+
 
     // /**
     //  * @return PriceBrand[] Returns an array of PriceBrand objects

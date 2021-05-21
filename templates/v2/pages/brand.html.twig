@@ -1,13 +1,37 @@
 {% extends 'v2/base.html.twig' %}
 {% block title %}{{ page.metaTitle ?? (page.h1~' - кузовной центр '~page.brandName~' Детейлингофъ') }}{% endblock %}
 {% block body %}
-    {{ include('v2/blocks/section/services_categories.html.twig') }}
-    {{ include('v2/blocks/section/auto-models.html.twig', { brand: page.priceBrand }) }}
-    {% embed 'v2/embed/black-services-block.html.twig' %}
-        {% block content %}
-            {{ price_list(page) }}
-            
-        {% endblock %}
-    {% endembed %}
-    {{ seo_block(page.text) }}
+    <div class="container container2">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="title">{{ page.name }}</h1>
+                <div class="col2 catalog-v2">
+                    {% set textParts = page.text|split('</p>', 2) %}
+                    {{ (textParts[0] ~ '</p></div>')|raw }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{ include('elements/_promotions.html.twig') }}
+
+    <div class="price-list-orders__wrapper">
+        {{ price_list(page) }}
+    </div>
+
+    {{ include('elements/_advantages.html.twig') }}
+
+<div class="container container2">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-lg-12">
+            <div class="col2 catalog-v2">
+                {{ ('<div>' ~ textParts[1])|raw }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
