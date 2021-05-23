@@ -66,6 +66,8 @@ class BrandsModelsExtension extends AbstractExtension
                 ['needs_environment' => true, 'is_safe' => ['html']]),
             new TwigFunction('models_popular', [$this, 'models_popular'],
                 ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction('brand_models', [$this, 'brand_models'],
+                ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 
@@ -244,5 +246,14 @@ class BrandsModelsExtension extends AbstractExtension
         return array_filter($brands, static function (PriceBrand $brand) {
             return count($brand->getPriceModels()) > 0;
         });
+    }
+
+    //Все модели бренда
+    public function brand_models(Environment $twig, PriceBrand $brand): string {
+        $item = $this->cache->getItem('brand_models' . $brand->getName());
+        $models = $brand->getPriceModels();
+        $html = $twig->render('v2/widget/models.html.twig', compact('models'));
+        $item->set($html);
+        return $item->get();
     }
 }

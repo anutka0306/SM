@@ -1299,3 +1299,29 @@ table, th, td{
     text-align: left;
     list-style-type: square !important;
 }
+.quote {
+    font-style: italic;
+    margin: 36px 0;
+    padding: 0 75px;
+    position: relative;
+    font-size: 18px;
+    color: #0d395f;
+}
+.quote:before {
+    background: url(../images/one_sprite.png) no-repeat -184px -55px;
+    content: "";
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: -10px;
+    width: 30px;
+}
+.quote:after {
+    background: url(../images/one_sprite.png) no-repeat -150px -55px;
+    bottom: -10px;
+    content: "";
+    height: 25px;
+    position: absolute;
+    right: 0;
+    width: 30px;
+}
