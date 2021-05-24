@@ -84,6 +84,25 @@ class PriceBrandRepository extends ServiceEntityRepository
        return $query->getResult();
     }
 
+    public function findOneWithPath($id):array
+    {
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addScalarResult('name', 'name', 'string');
+        $rsm->addScalarResult('name_rus', 'nameRus', 'string');
+        $rsm->addScalarResult('path', 'path', 'string');
+
+        $sql = "
+            SELECT b.name, b.name_rus, c.path
+            FROM price__brand b
+            JOIN content c on b.id = c.brand_id 
+            WHERE  b.id = {$id} LIMIT 1
+        ";
+
+        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+        return $query->getResult();
+    }
+
 
     // /**
     //  * @return PriceBrand[] Returns an array of PriceBrand objects

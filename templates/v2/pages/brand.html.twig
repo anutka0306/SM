@@ -29,9 +29,11 @@
             <div class="col2 catalog-v2">
                 {% set textSubParts = textParts[1]|split('[[$section_models]]',2) %}
                 {{ ('<div>' ~ textSubParts[0])|raw }}
-                <strong>Здесь будут модели</strong>
+
                 {{ brand_models(page.priceBrand) }}
+
                 {{ (textSubParts[1])|raw }}
+
             </div>
         </div>
     </div>

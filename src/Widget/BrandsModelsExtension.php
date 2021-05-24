@@ -252,7 +252,8 @@ class BrandsModelsExtension extends AbstractExtension
     public function brand_models(Environment $twig, PriceBrand $brand): string {
         $item = $this->cache->getItem('brand_models' . $brand->getName());
         $models = $brand->getPriceModels();
-        $html = $twig->render('v2/widget/models.html.twig', compact('models'));
+        $curBrand = $this->brand_repository->findOneWithPath($brand->getId());
+        $html = $twig->render('v2/widget/models.html.twig', compact('models', 'curBrand'));
         $item->set($html);
         return $item->get();
     }
