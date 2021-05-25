@@ -70,10 +70,11 @@ class PriceBrandRepository extends ServiceEntityRepository
 
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addScalarResult('name', 'name', 'string');
+        $rsm->addScalarResult('code', 'code', 'string');
         $rsm->addScalarResult('path', 'path', 'string');
 
         $sql = "
-            SELECT b.name, c.path
+            SELECT b.name, b.code, c.path
             FROM price__brand b
             JOIN content c on b.id = c.brand_id 
             ORDER BY b.name ASC 

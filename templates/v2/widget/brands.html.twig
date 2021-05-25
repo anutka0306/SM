@@ -7,7 +7,7 @@
                 {% for brand in row %}
 
                     {% if service.slug %}
-                        <div class="price-title brands-list__block_item"><a href="{{ service.slug}}{{ brand.path[1:] }}">{{ brand.name }}</a></div>
+                        <div class="price-title brands-list__block_item"><a href="{{ service.slug}}{{ brand.code }}">{{ brand.name }}</a></div>
                     {% else %}
                         <div class="price-title brands-list__block_item"><a href="{{ brand.path }}">{{ brand.name }}</a></div>
                     {% endif %}

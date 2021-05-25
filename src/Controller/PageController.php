@@ -42,6 +42,8 @@ class PageController extends AbstractController
         }
 
         if ($page instanceof Service) {
+            /* echo 'Page is '.$page;
+            exit();*/
             return $this->service($page);
         }
 

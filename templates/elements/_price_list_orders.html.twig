@@ -17,10 +17,11 @@
             {% for section in sections %}
           <div class="tab-pane fade {% if(loop.index == 1) %} active show{% endif %}" id="v-pills-settings{{ section.id }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
               {% for service in section.priceServices|filter(service => service.published ) %}
+
                  <div class="price_list_orders-line">
                 <div class="price_list_orders-line-text">
-                    {% if service.path %}
-                    <a href="{{ service.path }}">{{ service.nameInPriceList ?? service.name }}</a>
+                    {% if service.slug %}
+                    <a href="{{ service.slug }}">{{ service.nameInPriceList ?? service.name }}</a>
                     {% else %}
                         {{ service.name }} {{ page.brandAndModelName }}
                     {% endif %}
