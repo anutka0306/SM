@@ -11,9 +11,15 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use App\Repository\PriceCategoryRepository;
 use App\Repository\PriceServiceRepository;
+use App\Repository\ContentRepository;
 
 class BrandsModelsExtension extends AbstractExtension
 {
+    /**
+     * @var ContentRepository
+     */
+    protected $content_repository;
+
     /**
      * @var PriceBrandRepository
      */
@@ -33,8 +39,9 @@ class BrandsModelsExtension extends AbstractExtension
      */
     protected $price_service_repository;
 
-    public function __construct(PriceBrandRepository $brand_repository, AdapterInterface $cache, PriceCategoryRepository $service_repository, PriceServiceRepository $price_service_repository)
+    public function __construct(PriceBrandRepository $brand_repository, AdapterInterface $cache, PriceCategoryRepository $service_repository, PriceServiceRepository $price_service_repository, ContentRepository $content_repository)
     {
+        $this->content_repository = $content_repository;
         $this->brand_repository = $brand_repository;
         $this->cache = $cache;
         $this->service_repository = $service_repository;
@@ -86,11 +93,20 @@ class BrandsModelsExtension extends AbstractExtension
     public function brands_service_block(Environment $twig, $service = null): string
     {
             $item = $this->cache->getItem('brands_block');
-            $items = $this->brand_repository->findAllWithPath();
         
             if(!$service) {
+                $items = $this->brand_repository->findAllWithPath();
                 $services = $this->service_repository->findAll();
             }else{
+                $items = $this->brand_repository->findAllWithPath($service);
+                foreach ($items as $key => $value){
+                    //Убрать приставку euro из некоторых брендов
+                        $code = trim(str_replace('-euro','',$value['code']));
+
+                    $serviceUrl = $this->content_repository->findOneBy(['path'=>$service.$code.'/']);
+
+                        $items[$key]['service_url'] = $serviceUrl;
+                }
                 $services = $this->price_service_repository->findBy(['slug' => $service]);
             }
             $html = $twig->render('v2/widget/brands.html.twig', compact('items', 'services'));

@@ -27,13 +27,18 @@
     <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-12">
             <div class="col2 catalog-v2">
-                {% set textSubParts = textParts[1]|split('[[$section_models]]',2) %}
-                {{ ('<div>' ~ textSubParts[0])|raw }}
+                {% if textParts|length > 1 %}
+                    {% set textSubParts = textParts[1]|split('[[$section_models]]',2) %}
+                    {{ ('<div>' ~ textSubParts[0])|raw }}
 
-                {{ brand_models(page.priceBrand) }}
+                    {{ brand_models(page.priceBrand) }}
 
-                {{ (textSubParts[1])|raw }}
+                    {{ (textSubParts[1])|raw }}
+                {% else %}
+                    &nbsp;
+                    {{ brand_models(page.priceBrand) }}
 
+                {% endif %}
             </div>
         </div>
     </div>

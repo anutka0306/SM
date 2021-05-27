@@ -61,6 +61,7 @@ class PriceListModel
     {
 
         $this->brand_model = $content->getBrandAndModelName();
+
         if ($content instanceof Brand || $content instanceof Model || $content instanceof Simple) {
 
             $default_category = $this->configs->getCached('price.default_category');

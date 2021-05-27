@@ -4,6 +4,7 @@
 {% block body %}
     {% embed 'v2/embed/black-services-block.html.twig' %}
         {% block content %}
+{{ dump(page) }}
             {{ price_list(page) }}
 
         {% endblock %}

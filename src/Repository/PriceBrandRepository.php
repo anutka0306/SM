@@ -65,7 +65,7 @@ class PriceBrandRepository extends ServiceEntityRepository
     }
     
     
-    public function findAllWithPath():array
+    public function findAllWithPath($service = null):array
     {
 
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
@@ -73,16 +73,17 @@ class PriceBrandRepository extends ServiceEntityRepository
         $rsm->addScalarResult('code', 'code', 'string');
         $rsm->addScalarResult('path', 'path', 'string');
 
-        $sql = "
+
+            $sql = "
             SELECT b.name, b.code, c.path
             FROM price__brand b
-            JOIN content c on b.id = c.brand_id 
-            ORDER BY b.name ASC 
+            LEFT JOIN content c on b.id = c.brand_id 
+            GROUP BY b.name
+            ORDER BY b.name ASC
         ";
+            $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+            return $query->getResult();
 
-        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
-
-       return $query->getResult();
     }
 
     public function findOneWithPath($id):array
