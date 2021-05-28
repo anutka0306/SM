@@ -242,6 +242,8 @@ class Content implements PageInterface
     {
         return '';
     }
+
+
     /**
      * @ORM\PrePersist()
     */

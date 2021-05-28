@@ -37,7 +37,7 @@ $query = mysqli_query($connect, "SELECT `code`, `id` FROM `price__brand`");
 $brands_array = array();
 
 while($row = mysqli_fetch_array($query)){
-    $brands_array[] = array($row['code'], $row['id']);
+    $brands_array[] = array(trim(str_replace('-euro','',$row['code'])), $row['id']);
 }
 /*print_debug($brands_array);
 exit();*/
@@ -64,7 +64,6 @@ foreach($brands_array as $brand){
             $id = $row['id'];
         }
     }
-
 
 
 if($id) {

@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\BrandRepository;
+use App\Repository\ContentRepository;
 use App\Repository\RootServiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 /**
  * PriceService
@@ -182,7 +186,7 @@ class PriceService
         $this->priceOfHour = $priceOfHour;
     }
     
-    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository):self
+    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository):self
     {
         $model = $content->getModel();
         if ($model) {
@@ -196,10 +200,12 @@ class PriceService
         }
         $brand = $content->getBrand();
         if ($brand) {
+
             foreach ($brand->getPages() as $page) {
                 if ($page instanceof Service && $page->getService() && $page->getService()->getId() === $this->getId()) {
                     if ($page->getPublished()) {
                         $this->path = $page->getPath();
+                       // $this->path = $page->getService()->getId();
                         $this->nameInPriceList = $this->name.' '.$brand->getBrandAndModelName();
                     }else{
                         $rootServicePage = $rootServiceRepository->findOneBy(['service'=>$this]);
@@ -210,7 +216,15 @@ class PriceService
                     }
                     return $this;
 
-                }
+                }else{
+                    //если коды не совпали, то будем проверять в табл. content
+                    $path = $this->slug.$brand->getPriceBrand()->getCode().'/';
+
+                    if($contentRepository->findOneBy(['path' => $path])){
+                        $this->path = $path;
+                    }
+                }//end else
+
             }
         }
         return $this;
