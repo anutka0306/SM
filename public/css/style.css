@@ -1349,3 +1349,9 @@ table, th, td{
     border-color: #0d395f;
     color: #0d395f;
 }
+.price-list-orders__wrapper h2{
+    text-align: center;
+}
+h1.title{
+    text-align: center;
+}
