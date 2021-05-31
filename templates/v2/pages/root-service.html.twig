@@ -5,8 +5,12 @@
                 <div class="row justify-content-center">
                         <div class="col-sm-12 col-lg-12">
                                 <h1 class="title">{{ page.name }}</h1>
-                                        {% set textParts = page.text|split('</p>', 2) %}
-                                        {{ (textParts[0] ~ '</p>')|raw }}
+                                        {% if page.text starts with '<table' %}
+
+                                        {% else %}
+                                            {% set textParts = page.text|split('</p>', 2) %}
+                                            {{ (textParts[0] ~ '</p></div>')|raw }}
+                                        {% endif %}
                         </div>
                 </div>
         </div>
@@ -18,8 +22,11 @@
                         </div>
 
                         {{ include('elements/_advantages.html.twig') }}
-
-                        {{ service_text(textParts[1]) }}
+                        {% if textParts is defined %}
+                            {% if  textParts|length > 1 %}
+                                {{ service_text(textParts[1]) }}
+                            {% endif %}
+                        {% endif %}
 
        <div class="brands-service-block__wrapper">
             <div class="container container2">

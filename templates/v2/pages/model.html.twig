@@ -1,18 +1,33 @@
 {% extends 'v2/base.html.twig' %}
 {% block title %}{{ page.metaTitle ?? (page.h1~' - кузовной центр '~page.brandName~' Детейлингофъ') }}{% endblock %}
 {% block body %}
+    {% if(page.text is empty) %}
+        <div class="container container2">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="title">{{ page.name }}</h1>
+
+                </div>
+            </div>
+        </div>
+        {% else %}
     <div class="container container2">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="title">{{ page.name }}</h1>
                 <div class="col2 catalog-v2">
+                    {% if page.text starts with '<table' %}
+
+                        {% else %}
                     {% set textParts = page.text|split('</p>', 2) %}
                     {{ (textParts[0] ~ '</p></div>')|raw }}
+                            {% endif %}
 
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
 
     {{ include('elements/_promotions.html.twig') }}
 
@@ -26,8 +41,13 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-lg-12">
                 <div class="col2 catalog-v2">
-                    {% if textParts|length > 1 %}
-                        {{ service_text(textParts[1]) }}
+                    {% if textParts is defined %}
+                        {% if  textParts|length > 1 %}
+                            {{ service_text(textParts[1]) }}
+                        {% endif %}
+                    {% else %}
+                        &nbsp;
+                        {{ page.text|raw }}
                     {% endif %}
                 </div>
             </div>

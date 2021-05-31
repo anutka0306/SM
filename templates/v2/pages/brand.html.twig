@@ -1,18 +1,33 @@
 {% extends 'v2/base.html.twig' %}
 {% block title %}{{ page.metaTitle ?? (page.h1~' - кузовной центр '~page.brandName~' Детейлингофъ') }}{% endblock %}
 {% block body %}
-    <div class="container container2">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-lg-12">
-                <h1 class="title">{{ page.name }}</h1>
-                <div class="col2 catalog-v2">
-                    {% set textParts = page.text|split('</p>', 2) %}
-                    {{ (textParts[0] ~ '</p></div>')|raw }}
+    {% if(page.text is empty) %}
+        <div class="container container2">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="title">{{ page.name }}</h1>
 
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container container2">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="title">{{ page.name }}</h1>
+                    <div class="col2 catalog-v2">
+                        {% if page.text starts with '<table' %}
+
+                        {% else %}
+                            {% set textParts = page.text|split('</p>', 2) %}
+                            {{ (textParts[0] ~ '</p></div>')|raw }}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 
     {{ include('elements/_promotions.html.twig') }}
@@ -27,17 +42,23 @@
     <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-12">
             <div class="col2 catalog-v2">
-                {% if textParts|length > 1 %}
-                    {% set textSubParts = textParts[1]|split('[[$section_models]]',2) %}
-                    {{ ('<div>' ~ textSubParts[0])|raw }}
+                {% if textParts is defined %}
+                    {% if textParts|length > 1 %}
+                        {% set textSubParts = textParts[1]|split('[[$section_models]]',2) %}
+                        {{ ('<div>' ~ textSubParts[0])|raw }}
 
-                    {{ brand_models(page.priceBrand) }}
+                        {{ brand_models(page.priceBrand) }}
 
-                    {{ (textSubParts[1])|raw }}
+                        {{ (textSubParts[1])|raw }}
+                    {% else %}
+                        &nbsp;
+                        {{ brand_models(page.priceBrand) }}
+
+                    {% endif %}
                 {% else %}
-                    &nbsp;
                     {{ brand_models(page.priceBrand) }}
-
+                    &nbsp;
+                    {{ page.text|raw }}
                 {% endif %}
             </div>
         </div>
