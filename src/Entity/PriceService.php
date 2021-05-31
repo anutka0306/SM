@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BrandRepository;
+use App\Repository\PriceBrandRepository;
 use App\Repository\ContentRepository;
 use App\Repository\RootServiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -84,6 +85,7 @@ class PriceService
      * @ORM\ManyToMany(targetEntity="App\Entity\Salon", mappedBy="excludedServices")
      */
     private $excludedSalons;
+
     
     public function __construct()
     {
@@ -167,6 +169,11 @@ class PriceService
         return $this->priceCategory;
     }
 
+    public function getBrandById(int $id, PriceBrandRepository $priceBrandRepository){
+
+     return $priceBrandRepository->findOneBy(['id'=>$id]);
+    }
+
     public function setPriceCategory(?PriceCategory $priceCategory): self
     {
         $this->priceCategory = $priceCategory;
@@ -186,7 +193,7 @@ class PriceService
         $this->priceOfHour = $priceOfHour;
     }
     
-    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository):self
+    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository, PriceBrandRepository $priceBrandRepository):self
     {
         $model = $content->getModel();
         if ($model) {
@@ -199,10 +206,11 @@ class PriceService
             }
         }
         $brand = $content->getBrand();
-        if ($brand) {
 
+        if ($brand) {
             foreach ($brand->getPages() as $page) {
                 if ($page instanceof Service && $page->getService() && $page->getService()->getId() === $this->getId()) {
+
                     if ($page->getPublished()) {
                         $this->path = $page->getPath();
                        // $this->path = $page->getService()->getId();
@@ -214,19 +222,37 @@ class PriceService
                             $this->nameInPriceList = $this->name;
                         }
                     }
+
                     return $this;
 
                 }else{
+
                     //если коды не совпали, то будем проверять в табл. content
                     $path = $this->slug.$brand->getPriceBrand()->getCode().'/';
 
                     if($contentRepository->findOneBy(['path' => $path])){
                         $this->path = $path;
+                    }else{
+                        // это отрабатывает для Пежо, Форд страницы сервис/бренд
+                        $brandId = $content->getBrand()->getBrandId();
+                        $path = $this->slug.str_replace('-euro','',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/';
+
+                       if($contentRepository->findOneBy(['path' => $path])){
+                            $this->path = $path;
+                        }
                     }
+                    return $this;
                 }//end else
 
+            }//endforeach
+//это отрабатывает для Пежо, Ford страницы бренда
+            $brandId = $content->getBrandId();
+            $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/';
+            if($contentRepository->findOneBy(['path' => $path])){
+                $this->path = $path;
             }
-        }
+        }//end brand
+
         return $this;
     }
 

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\RootServiceRepository;
 use App\Repository\ContentRepository;
+use App\Repository\BrandRepository;
+use App\Repository\PriceBrandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -236,13 +238,13 @@ class PriceCategory
         }
     }
     
-    public function setPathForServices(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $cr = null)
+    public function setPathForServices(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $cr = null, PriceBrandRepository $pbr = null)
     {
         if ( ! $this->getPriceServices()->count()) {
             return;
         }
         foreach ($this->getPriceServices() as $price_service) {
-            $price_service->setPathByContent($content, $rootServiceRepository, $cr);
+            $price_service->setPathByContent($content, $rootServiceRepository, $cr, $pbr);
         }
     }
     

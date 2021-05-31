@@ -5,6 +5,8 @@ namespace App\Model;
 use App\Entity\Brand;
 use App\Entity\Content;
 use App\Repository\ContentRepository;
+use App\Repository\BrandRepository;
+use App\Repository\PriceBrandRepository;
 use App\Entity\Model;
 use App\Entity\PriceCategory;
 use App\Entity\RootService;
@@ -45,12 +47,19 @@ class PriceListModel
      */
     private $contentRepository;
 
+
+    /**
+     * @var PriceBrandRepository
+     */
+    private $priceBrandRepository;
+
     public function __construct(
         PriceServiceRepository $price_service_repository,
         PriceCategoryRepository $price_category_repository,
         RootServiceRepository $rootServiceRepository,
         ConfigService $configs,
-        ContentRepository $contentRepository
+        ContentRepository $contentRepository,
+        PriceBrandRepository $priceBrandRepository
     ) {
         
         $this->price_service_repository  = $price_service_repository;
@@ -58,6 +67,7 @@ class PriceListModel
         $this->configs                   = $configs;
         $this->rootServiceRepository = $rootServiceRepository;
         $this->contentRepository = $contentRepository;
+        $this->priceBrandRepository = $priceBrandRepository;
     }
     
     /**
@@ -141,7 +151,7 @@ class PriceListModel
 
         $section->fillChildrenServices();
         $section->setPriceForServices($content);
-        $section->setPathForServices($content, $this->rootServiceRepository, $this->contentRepository);
+        $section->setPathForServices($content, $this->rootServiceRepository, $this->contentRepository, $this->priceBrandRepository);
     }
 
     /**
