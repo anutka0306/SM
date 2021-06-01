@@ -11,7 +11,7 @@ class Model extends Content
 {
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\PriceModel", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\PriceModel", cascade={"persist", "remove"}, fetch="EAGER")
      * @ORM\JoinColumn(name="model_id")
      */
     private $priceModel;
@@ -49,6 +49,15 @@ class Model extends Content
             return '';
         }
         return $model->getName();
+    }
+
+    public function getModelCode():string
+    {
+        $model = $this->getPriceModel();
+        if(!$model){
+            return '';
+        }
+        return $model->getCode();
     }
     
     public function getBrandName():string

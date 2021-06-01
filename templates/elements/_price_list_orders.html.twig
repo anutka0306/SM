@@ -21,6 +21,7 @@
 
                  <div class="price_list_orders-line">
                 <div class="price_list_orders-line-text">
+                    {#{{ dump(service) }}#}
                     {% if service.path %}
                     <a href="{{ service.path }}">{{ service.nameInPriceList ?? service.name }}</a>
                     {% elseif service.slug %}

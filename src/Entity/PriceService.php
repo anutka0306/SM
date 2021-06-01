@@ -199,12 +199,24 @@ class PriceService
         if ($model) {
             foreach ($model->getPages() as $page) {
                 if ($page instanceof Service && $page->getService() && $page->getService()->getId() === $this->getId() && $page->getPublished()) {
-                    $this->path = $page->getPath();
+                    //$this->path = $page->getPath();
+                    $this->path = 'here1';
                     $this->nameInPriceList = $this->name.' '.$model->getBrandAndModelName();
                     return $this;
                 }
+            }//endfor
+
+            $brandId = $content->getParent()->getBrandId();
+            $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/'.$model->getModelCode().'/';
+            if($contentRepository->findOneBy(['path' => $path])) {
+                $this->path = $path;
+                return $this;
             }
+
+
         }
+
+
         $brand = $content->getBrand();
 
         if ($brand) {
@@ -240,7 +252,9 @@ class PriceService
                        if($contentRepository->findOneBy(['path' => $path])){
                             $this->path = $path;
                         }
+
                     }
+
                     return $this;
                 }//end else
 
@@ -251,6 +265,7 @@ class PriceService
             if($contentRepository->findOneBy(['path' => $path])){
                 $this->path = $path;
             }
+
         }//end brand
 
         return $this;
