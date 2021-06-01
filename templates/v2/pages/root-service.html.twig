@@ -9,7 +9,9 @@
 
                                         {% else %}
                                             {% set textParts = page.text|split('</p>', 2) %}
+                            <div class="col2 catalog-v2">
                                             {{ (textParts[0] ~ '</p></div>')|raw }}
+                            </div>
                                         {% endif %}
                         </div>
                 </div>
