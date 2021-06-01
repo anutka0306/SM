@@ -2,6 +2,7 @@
 
 namespace App\Widget;
 
+use App\Entity\Content;
 use App\Entity\PriceBrand;
 use App\Entity\PriceModel;
 use App\Repository\PriceBrandRepository;
@@ -265,9 +266,19 @@ class BrandsModelsExtension extends AbstractExtension
     }
 
     //Все модели бренда
-    public function brand_models(Environment $twig, PriceBrand $brand): string {
+    public function brand_models(Environment $twig, PriceBrand $brand, $path): string {
         $item = $this->cache->getItem('brand_models' . $brand->getName());
         $models = $brand->getPriceModels();
+        foreach ($models as $key => $model){
+            $page = $this->content_repository->findOneBy(['path' => $path.$model->getCode().'/']);
+            if($page){
+                $model->path = $page->getPath();
+            }else{
+                $model->path = null;
+            }
+        }
+
+
         $curBrand = $this->brand_repository->findOneWithPath($brand->getId());
         $html = $twig->render('v2/widget/models.html.twig', compact('models', 'curBrand'));
         $item->set($html);

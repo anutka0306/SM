@@ -5,7 +5,19 @@
     {% for row in models|batch(3) %}
     <tr>
         {% for model in row %}
-        <td><a href="{{ curBrand[0].path }}{{ model.code }}" title="Ремонт АКПП {{ curBrand[0].name }} {{ model.name }} ({{ curBrand[0].nameRus }} {{ model.nameRus }}) в Москве">Ремонт АКПП {{ curBrand[0].name }}  {{ model.name}} ({{ curBrand[0].nameRus }} {{ model.nameRus }}) в Москве</a></td>
+
+        <td>
+            {% if(model.path) %}
+                <a href="{{ curBrand[0].path }}{{ model.code }}"
+                   title="Ремонт АКПП {{ curBrand[0].name }} {{ model.name }} ({{ curBrand[0].nameRus }} {{ model.nameRus }}) в Москве">
+                    Ремонт АКПП {{ curBrand[0].name }}  {{ model.name}} ({{ curBrand[0].nameRus }} {{ model.nameRus }}) в Москве
+                </a>
+                {% else %}
+                    <span style="color: blue">
+                        Ремонт АКПП {{ curBrand[0].name }}  {{ model.name}} ({{ curBrand[0].nameRus }} {{ model.nameRus }}) в Москве
+                    </span>
+            {% endif %}
+        </td>
         {% endfor %}
     </tr>
 
