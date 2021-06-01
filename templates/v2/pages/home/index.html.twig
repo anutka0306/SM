@@ -12,8 +12,9 @@
 {% block body %}
     {{ service_text(page.text) }}
     {{ include('v2/blocks/section/auto-brands.html.twig') }}
-
-    {{ price_list(page) }}
+    <div class="price-list-orders__wrapper">
+        {{ price_list(page) }}
+    </div>
     {{ include('elements/_gallery.html.twig') }}
     {{ include('elements/_promotions.html.twig') }}
     {{ include('elements/_advantages.html.twig') }}

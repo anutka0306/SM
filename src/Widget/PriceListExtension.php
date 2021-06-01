@@ -49,7 +49,8 @@ class PriceListExtension extends AbstractExtension
         if ( empty($sections) ) {
             return '';
         }
-        $price_list_title = $this->model->getPricelistTitle();
+        //$price_list_title = $this->model->getPricelistTitle();
+        $price_list_title = str_replace('в Москве','- цены:',$page->getName());
         
        // return $twig->render('v2/widget/price_list.html.twig', compact('sections', 'price_list_title','page'));
         return $twig->render('elements/_price_list_orders.html.twig', compact('sections', 'price_list_title','page'));
