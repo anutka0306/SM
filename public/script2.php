@@ -38,6 +38,7 @@ foreach ($model_array as $key => $model) {
     }
 }
 
+
 $services_array = array();
 $query = mysqli_query($connect, "SELECT `slug`, `id`, `price_category_id` FROM `price__services`");
 $services_array = array();
@@ -48,77 +49,20 @@ while($row = mysqli_fetch_array($query)){
 //exit();
 foreach ($services_array as $service) {
     foreach ($model_array as $model) {
-        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}{$model[3]}/{$model[0]}/' AND `page_type` IS NULL");
+        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}{$model[3]}/{$model[0]}/'");
 
         if ($row = mysqli_fetch_assoc($query)) {
             $id = $row['id'];
-            print_debug($id);
-        } /*else {
-            $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}remont-akpp-{$model[3]}/{$model[0]}/'");
-            if ($row = mysqli_fetch_assoc($query)) {
-                $id = $row['id'];
-                print_debug($id);
-            }
-        }*/
-            /* }*/
-
+            print_debug($id .'-'. $model[1]);
             if ($id) {
-                mysqli_query($connect, "UPDATE `content` SET `page_type` = 'service', `service_id` = {$service[1]}, `price_category_id` = {$service[2]} WHERE `id`={$id}");
+                mysqli_query($connect, "UPDATE `content` SET `model_id` = {$model[1]} WHERE `id`={$id}");
+            }else{
+                continue;
             }
+        }
+
 
     }
 }
 
-
-
-
-exit();
-
-/*$query = mysqli_query($connect, "SELECT `slug`, `id`, `price_category_id` FROM `price__services`");
-$services_array = array();
-while($row = mysqli_fetch_array($query)){
-    $services_array[] = array($row['slug'], $row['id'], $row['price_category_id']);
-}*/
-/*print_debug($services_array);
-exit();*/
-
-
-
-
-
-foreach($brands_array as $brand){
-    $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '/remont/{$brand[0]}/' AND  `page_type` = 'brand'");
-    if($row = mysqli_fetch_assoc($query)){
-        $id = $row['id'];
-    }else{
-        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '/remont/remont-akpp-{$brand[0]}/' AND  `page_type` = 'brand'");
-        if($row = mysqli_fetch_assoc($query)){
-            $id = $row['id'];
-        }
-    }
-
-
-    if($id) {
-        foreach ($services_array as $service) {
-            $query = mysqli_query($connect, "SELECT * FROM `content` WHERE `path` = '{$service[0]}{$brand[0]}/'");
-            if ($row = mysqli_fetch_assoc($query)) {
-                /* print_debug($row);
-                 continue;*/
-                $update_query = mysqli_query($connect, "UPDATE `content` SET `page_type` = 'service', `parent_id` = {$id}, `service_id` = {$service[1]}, `price_category_id` = {$service[2]} WHERE `id` = {$row['id']}");
-                continue;
-            } else {
-                echo 'other';
-                continue;
-                // $query1 = mysqli_query($connect, "SELECT * FROM `content` WHERE `path` = '/remont/{$brand[0]}/'");
-                /* if ($row = mysqli_fetch_array($query1)) {
-                     $update_query = mysqli_query($connect, "UPDATE `content` SET `page_type` = 'brand', `brand_id` = {$brand[1]} WHERE `id` = {$row['id']}");
-                 }*/
-            }
-        }//end services cicle
-    }//end if
-    else{
-        print_debug($brand[0]);
-        continue;
-    }
-}//end brands cicle
 

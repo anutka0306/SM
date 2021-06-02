@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\PriceModelRepository;
 use App\Repository\RootServiceRepository;
 use App\Repository\ContentRepository;
 use App\Repository\BrandRepository;
@@ -238,13 +239,13 @@ class PriceCategory
         }
     }
     
-    public function setPathForServices(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $cr = null, PriceBrandRepository $pbr = null)
+    public function setPathForServices(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $cr = null, PriceBrandRepository $pbr = null, PriceModelRepository $mr = null)
     {
         if ( ! $this->getPriceServices()->count()) {
             return;
         }
         foreach ($this->getPriceServices() as $price_service) {
-            $price_service->setPathByContent($content, $rootServiceRepository, $cr, $pbr);
+            $price_service->setPathByContent($content, $rootServiceRepository, $cr, $pbr, $mr);
         }
     }
     

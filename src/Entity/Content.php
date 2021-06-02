@@ -44,6 +44,12 @@ class Content implements PageInterface
     protected $brand_id;
 
     /**
+     * @var int
+     * @ORM\Column(name="model_id", type="integer", nullable=true)
+     */
+    protected $model_id;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="path", type="string", length=250, nullable=true)
@@ -86,6 +92,7 @@ class Content implements PageInterface
      * @ORM\Column(type="boolean", options={"default": 1})
      */
     protected $published = true;
+
 
     public function __construct()
     {
@@ -257,6 +264,11 @@ class Content implements PageInterface
     public function getBrandId(): ?int
     {
         return $this->brand_id;
+    }
+
+    public function getModelId(): ?int
+    {
+        return $this->model_id;
     }
 
     public function setBrandId(?int $brand_id): self

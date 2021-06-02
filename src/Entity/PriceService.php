@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\BrandRepository;
 use App\Repository\PriceBrandRepository;
+use App\Repository\ModelRepository;
+use App\Repository\PriceModelRepository;
 use App\Repository\ContentRepository;
 use App\Repository\RootServiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -87,11 +89,12 @@ class PriceService
     private $excludedSalons;
 
     
-    public function __construct()
+    public function __construct(PriceModelRepository $price_model_repository)
     {
         $this->contents = new ArrayCollection();
         $this->beforeAfterImages = new ArrayCollection();
         $this->excludedSalons = new ArrayCollection();
+        $this->price_model_repository = $price_model_repository;
     }
     
     public function getPriceOfHour(): int
@@ -193,14 +196,15 @@ class PriceService
         $this->priceOfHour = $priceOfHour;
     }
     
-    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository, PriceBrandRepository $priceBrandRepository):self
+    public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository, PriceBrandRepository $priceBrandRepository, PriceModelRepository $priceModelRepository):self
     {
+
+
         $model = $content->getModel();
         if ($model) {
             foreach ($model->getPages() as $page) {
                 if ($page instanceof Service && $page->getService() && $page->getService()->getId() === $this->getId() && $page->getPublished()) {
-                    //$this->path = $page->getPath();
-                    $this->path = 'here1';
+                    $this->path = $page->getPath();
                     $this->nameInPriceList = $this->name.' '.$model->getBrandAndModelName();
                     return $this;
                 }
@@ -213,6 +217,21 @@ class PriceService
                 return $this;
             }
 
+        }
+
+        $modelId = $content->getModelId();
+        if($modelId){
+            $modelCode = $priceModelRepository->find($modelId)->getCode();
+            $brandCode = $content->getBrand()->getPriceBrand()->getCode();
+            if($modelCode && $brandCode){
+
+                $path = $this->slug.str_replace('-euro','',$brandCode).'/'.$modelCode.'/';
+                if($contentRepository->findOneBy(['path' => $path])){
+
+                    $this->path = $path;
+                }
+                return $this;
+            }
 
         }
 
@@ -222,10 +241,8 @@ class PriceService
         if ($brand) {
             foreach ($brand->getPages() as $page) {
                 if ($page instanceof Service && $page->getService() && $page->getService()->getId() === $this->getId()) {
-
                     if ($page->getPublished()) {
                         $this->path = $page->getPath();
-                       // $this->path = $page->getService()->getId();
                         $this->nameInPriceList = $this->name.' '.$brand->getBrandAndModelName();
                     }else{
                         $rootServicePage = $rootServiceRepository->findOneBy(['service'=>$this]);
@@ -238,6 +255,7 @@ class PriceService
                     return $this;
 
                 }else{
+
 
                     //если коды не совпали, то будем проверять в табл. content
                     $path = $this->slug.$brand->getPriceBrand()->getCode().'/';
@@ -259,6 +277,7 @@ class PriceService
                 }//end else
 
             }//endforeach
+            
 //это отрабатывает для Пежо, Ford страницы бренда
             $brandId = $content->getBrandId();
             $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/';
