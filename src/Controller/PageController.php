@@ -8,6 +8,7 @@ use App\Entity\RootService;
 use App\Entity\Service;
 use App\Entity\Simple;
 use App\Entity\Vacancy;
+use App\Entity\ServiceWithout;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,9 +62,19 @@ class PageController extends AbstractController
             return $this->vacancy($page);
         }
 
+        if($page instanceof ServiceWithout){
+            return $this->service_without($page);
+        }
+
         throw $this->createNotFoundException('Page is instance of '.get_class($page));
     }
-    
+
+    private function service_without(ServiceWithout $service_without)
+    {
+        return $this->render('v2/pages/service_without.html.twig',[
+           'page' => $service_without,
+        ]);
+    }
     
     private function brand(Brand $brand)
     {

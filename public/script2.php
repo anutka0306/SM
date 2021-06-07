@@ -49,13 +49,13 @@ while($row = mysqli_fetch_array($query)){
 //exit();
 foreach ($services_array as $service) {
     foreach ($model_array as $model) {
-        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}{$model[3]}/{$model[0]}/'");
+        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}{$model[3]}/{$model[0]}/' AND `page_type` IS NULL ");
 
         if ($row = mysqli_fetch_assoc($query)) {
             $id = $row['id'];
             print_debug($id .'-'. $model[1]);
             if ($id) {
-                mysqli_query($connect, "UPDATE `content` SET `model_id` = {$model[1]} WHERE `id`={$id}");
+                mysqli_query($connect, "UPDATE `content` SET `page_type` = 'service', `model_id` = {$model[1]} WHERE `id`={$id}");
             }else{
                 continue;
             }

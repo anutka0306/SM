@@ -211,7 +211,7 @@ class PriceService
             }//endfor
 
             $brandId = $content->getParent()->getBrandId();
-            $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/'.$model->getModelCode().'/';
+            $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/'.str_replace('cc', 'passat-cc',$model->getModelCode()).'/';
             if($contentRepository->findOneBy(['path' => $path])) {
                 $this->path = $path;
                 return $this;
@@ -221,8 +221,13 @@ class PriceService
 
         $modelId = $content->getModelId();
         if($modelId){
-            $modelCode = $priceModelRepository->find($modelId)->getCode();
-            $brandCode = $content->getBrand()->getPriceBrand()->getCode();
+            $modelCode = str_replace('cc', 'passat-cc',$priceModelRepository->find($modelId)->getCode());
+            //для volkswagen
+            if($content->getBrand() == null && strpos($content->getPath(), '/volkswagen/')){
+                $brandCode = 'volkswagen';
+            }else {
+                $brandCode = $content->getBrand()->getPriceBrand()->getCode();
+            }
             if($modelCode && $brandCode){
 
                 $path = $this->slug.str_replace('-euro','',$brandCode).'/'.$modelCode.'/';
@@ -277,7 +282,7 @@ class PriceService
                 }//end else
 
             }//endforeach
-            
+
 //это отрабатывает для Пежо, Ford страницы бренда
             $brandId = $content->getBrandId();
             $path = $this->slug.str_replace('-euro', '',$this->getBrandById($brandId, $priceBrandRepository)->getCode()).'/';
