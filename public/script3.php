@@ -73,27 +73,45 @@ exit();*/
     }
 }*/
 
+//добавление самой модели
+/*foreach ($model_array as $model){
+
+        $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '/remont/{$model[3]}/{$model[0]}/' AND `model_id` IS NULL ");
+        echo $model[3].'/'.$model[0].'/';
+        if ($row = mysqli_fetch_assoc($query)) {
+            $id = $row['id'];
+            print_debug($id . '-' . $model[1]);
+            if ($id) {
+                mysqli_query($connect, "UPDATE `content` SET `page_type` = 'model', `model_id`= {$model[1]} WHERE `id`={$id}");
+            } else {
+                continue;
+            }
+        }
+}*/
 
 // для моделей
 
 foreach ($services_array as $service) {
     foreach ($model_array as $model) {
-        if($model[3] == 'mercedes') {
-            $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '{$service[0]}{$model[3]}/{$model[0]}/' AND `model_id` IS NULL ");
-echo $service[0].$model[3].'/'.$model[0].'/';
+
+            $query = mysqli_query($connect, "SELECT `id` FROM `content` WHERE `path` = '".$service[0].$model[3]."/".$model[0]."/"."' AND `page_type` IS NULL");
+            if($model[3] == 'volvo') {
+                echo $service[0] . $model[3] . '/' . $model[0] . '/<br/>';
+            }
             if ($row = mysqli_fetch_assoc($query)) {
                 $id = $row['id'];
-                print_debug($id . '-' . $model[1]);
-                if ($id) {
+                //print_debug($id . '-' . $model[0]);
+                print_debug($row);
+                /*if ($id) {
                     mysqli_query($connect, "UPDATE `content` SET `page_type` = 'service', `service_id` = {$service[1]}, `price_category_id` = {$service[2]}, `model_id`= {$model[1]} WHERE `id`={$id}");
                 } else {
                     continue;
-                }
+                }*/
             }
         }
 
     }
-}
+
 
 
 /*foreach ($services_array as $service) {
