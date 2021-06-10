@@ -229,13 +229,13 @@ class PriceCategory
         }
     }
     
-    public function setPriceForServices(Content $content)
+    public function setPriceForServices(Content $content, PriceModelRepository $priceModelRepository)
     {
         if ( ! $this->getPriceServices()->count()) {
             return;
         }
         foreach ($this->getPriceServices() as $price_service) {
-            $price_service->setPriceByContent($content);
+            $price_service->setPriceByContent($content, $priceModelRepository);
         }
     }
     

@@ -184,16 +184,36 @@ class PriceService
         return $this;
     }
     
-    public function setPriceByContent(Content $content)
+    public function setPriceByContent(Content $content, PriceModelRepository $priceModelRepository)
     {
         $price_brand = $content->getPriceBrand();
         $price_model = $content->getPriceModel();
-        $this->increase = $price_brand ? $price_brand->getIncrease() : PriceBrand::DEFAULT_INCREASE;
-        $priceOfHour = $price_brand ? $price_brand->getClass()->getPriceOfHour() : PriceBrand::DEFAULT_PRICE_OF_HOUR;
-        if ($price_model) {
-            $priceOfHour =  $price_model->getClass()->getPriceOfHour();
+        $model_id = $content->getModelId();
+        $this->model_id = $model_id;
+
+        if($price_brand || $price_model){
+            if($price_brand){
+                $this->increase = $price_brand->getIncrease();
+                $priceOfHour = $price_brand->getClass()->getPriceOfHour();
+            }
+            if ($price_model) {
+                $this->increase = $price_model ? $price_model->getIncrease() : PriceBrand::DEFAULT_INCREASE;
+                $priceOfHour =  $price_model->getClass()->getPriceOfHour();
+            }
+        }
+        if ($model_id){
+            $model = $priceModelRepository->find($model_id);
+            $this->increase = $model->getIncrease();
+            $priceOfHour = $model->getClass()->getPriceOfHour();
+        }
+
+        else{
+            $this->increase = $price_brand ? $price_brand->getIncrease() : PriceBrand::DEFAULT_INCREASE;
+            $priceOfHour = $price_brand ? $price_brand->getClass()->getPriceOfHour() : PriceBrand::DEFAULT_PRICE_OF_HOUR;
         }
         $this->priceOfHour = $priceOfHour;
+        $this->price = round($this->getHours() * $this->priceOfHour * (1 + $this->increase));
+
     }
     
     public function setPathByContent(Content $content,RootServiceRepository $rootServiceRepository, ContentRepository $contentRepository, PriceBrandRepository $priceBrandRepository, PriceModelRepository $priceModelRepository):self

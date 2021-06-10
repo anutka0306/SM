@@ -102,6 +102,11 @@ class PriceModel
      */
     private $type = 0;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $increase;
+
     public function __construct()
     {
         $this->beforeAfterImages = new ArrayCollection();
@@ -308,5 +313,17 @@ class PriceModel
     public function getTypeName():string
     {
         return array_flip(self::TYPES)[$this->type] ?? 'Не указан';
+    }
+
+    public function getIncrease(): ?float
+    {
+        return $this->increase;
+    }
+
+    public function setIncrease(float $increase): self
+    {
+        $this->increase = $increase;
+
+        return $this;
     }
 }

@@ -158,7 +158,7 @@ class PriceListModel
     {
 
         $section->fillChildrenServices();
-        $section->setPriceForServices($content);
+        $section->setPriceForServices($content, $this->priceModelRepository);
         $section->setPathForServices($content, $this->rootServiceRepository, $this->contentRepository, $this->priceBrandRepository, $this->priceModelRepository);
     }
 

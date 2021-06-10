@@ -21,8 +21,8 @@ class PriceBrand
 {
     use VichImagePropertyNamerTrait;
 
-    const DEFAULT_PRICE_OF_HOUR = 1250;
-    const DEFAULT_INCREASE = -20;
+    const DEFAULT_PRICE_OF_HOUR = 1600;
+    const DEFAULT_INCREASE = 0;
     const DEFAULT_IMAGE = '/img/no_image_car.png';
     
     /**
