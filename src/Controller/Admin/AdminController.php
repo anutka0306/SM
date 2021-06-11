@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 
 class AdminController extends AbstractDashboardController
 {
@@ -31,8 +32,11 @@ class AdminController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-        yield MenuItem::linkToCrud('Марка', 'fas fa-car', Brand::class);
+        return[
+            MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::subMenu('Редактор страниц', 'fa fa-fw fa-file-alt')->setSubItems([
+                MenuItem::linkToCrud('Марка', 'fas fa-car', Brand::class),
+            ]),
+        ];
     }
 }
