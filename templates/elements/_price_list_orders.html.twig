@@ -22,7 +22,7 @@
                  <div class="price_list_orders-line">
                 <div class="price_list_orders-line-text">
 
-                    {#{% if(loop.index == 1) %} {{ dump(service) }}{% endif %}#}
+                   {# {% if(loop.index == 1) %} {{ dump(service) }}{% endif %}#}
 
                     {% if service.path %}
                     <a href="{{ service.path }}">{{ service.nameInPriceList ?? service.name }}</a>
