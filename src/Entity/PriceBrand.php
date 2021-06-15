@@ -44,7 +44,7 @@ class PriceBrand
     /**
      * @var int
      *
-     * @ORM\Column(name="increase", type="integer", nullable=false)
+     * @ORM\Column(name="increase", type="float", nullable=false)
      */
     private $increase;
     /**
@@ -121,12 +121,12 @@ class PriceBrand
         return $this;
     }
 
-    public function getIncrease(): ?int
+    public function getIncrease(): ?float
     {
         return $this->increase;
     }
 
-    public function setIncrease(int $increase): self
+    public function setIncrease(float $increase): self
     {
         $this->increase = $increase;
 

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Brand;
 use App\Entity\Content;
+use App\Entity\PriceBrand;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -11,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CodeEditorField;
@@ -53,11 +55,13 @@ class BrandCrudController extends AbstractCrudController
         $pages = $this->getDoctrine()->getManager()->getRepository(Content::class)->findBy(['parent' => $_GET['entityId']]);
     }
 
+
+
         return [
             Field::new('id','ID')->onlyOnIndex(),
             TextField::new('name', 'Название'),
             TextField::new('path','URL'),
-            Field::new('brand_id', 'ID Марки')->setRequired(true),
+            IntegerField::new('brand_id', 'ID Марки')->setRequired(true),
             TextField::new('h1', 'H1'),
             TextField::new('meta_title', 'Title')->hideOnIndex(),
             TextEditorField::new('meta_description', 'Description')->hideOnIndex(),

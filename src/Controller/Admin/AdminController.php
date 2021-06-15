@@ -3,6 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Brand;
+use App\Entity\PriceBrand;
+use App\Entity\PriceCategory;
+use App\Entity\PriceClass;
+use App\Entity\PriceModel;
+use App\Entity\PriceService;
 use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -35,8 +40,15 @@ class AdminController extends AbstractDashboardController
         return[
             MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
             MenuItem::subMenu('Редактор страниц', 'fa fa-fw fa-file-alt')->setSubItems([
-                MenuItem::linkToCrud('Марка', 'fas fa-car', Brand::class),
+                MenuItem::linkToCrud('Стр. Марок', 'fas fa-car', Brand::class),
             ]),
+            MenuItem::subMenu('Прайс лист','fa fa-fw fa-hand-holding-usd')->setSubItems([
+                MenuItem::linkToCrud('Марки', 'fas fa-car', PriceBrand::class),
+                MenuItem::linkToCrud('Модели', 'fas fa-car', PriceModel::class),
+                MenuItem::linkToCrud('Категории услуг', 'fa fa-fw fa-folder', PriceCategory::class),
+                MenuItem::linkToCrud('Услуги', 'fa fa-fw fa-wrench', PriceService::class),
+                MenuItem::linkToCrud('Классы', 'fa fa-fw fa-hand-holding-usd', PriceClass::class),
+            ])
         ];
     }
 }
