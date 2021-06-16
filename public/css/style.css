@@ -1239,7 +1239,7 @@ button {
     padding-top: 60px;
     padding-bottom: 10px;
 }
-.price-list-orders__wrapper{
+.price-list-orders__wrapper, .brands-service-block__wrapper{
     padding:60px 0;
 }
 
@@ -1349,9 +1349,14 @@ table, th, td{
     border-color: #0d395f;
     color: #0d395f;
 }
-.price-list-orders__wrapper h2{
+.price-list-orders__wrapper h2, .brands-service-block__wrapper h2{
     text-align: center;
 }
+
+.brands-service-block__wrapper h2{
+    margin-bottom: 30px;
+}
+
 h1.title{
     text-align: center;
 }
