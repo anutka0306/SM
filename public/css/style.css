@@ -1355,3 +1355,36 @@ table, th, td{
 h1.title{
     text-align: center;
 }
+
+/* Contacts */
+
+.map{border-top: 4px solid #949494;height:750px;overflow:hidden;}
+.contacts .col1 span{display:inline-block;font-size:12px;margin-bottom:2px;text-transform:uppercase;}
+.fs18{font-size:18.5px;}
+.contacts .col1>div{margin-bottom:24px;padding-left:77px;position:relative;}
+.contacts .col1>div:before{content:"";height:60px;left:0;position:absolute;top:-9px;width:60px;}
+.icon1-1:before{background:url(../images/one_sprite.png) no-repeat 0 -150px;}
+.icon1-2:before{background:url(../images/one_sprite.png) no-repeat -64px -150px;}
+.icon1-3:before{background:url(../images/one_sprite.png) no-repeat -128px -150px;}
+.icon1-4:before{background:url(../images/one_sprite.png) no-repeat -192px -150px;}
+.fs24{font-size:24px;}
+.fs24.title5{text-transform:uppercase;}
+.fs24.title5:after{bottom:-27px;}
+.cols5>div{display:inline-block;vertical-align:top;}
+.cols5>.col1 input[type="text"]{height:40px;margin-bottom:21px;padding:0 2% 0 17% !important;width:81% !important;}
+.cols5>.col1{margin-right:2%;width:36%;}
+.cols5>.col2{width:61%;}
+.cols5>.col2 textarea{height:147px;margin-bottom:21px;padding:2% 3%;/*width:94%;*/width: 88%;}
+.cols5>.col2 .btn{font-family:"Exo2-Bold";}
+.input-email{background:url(../images/one_sprite2.png) no-repeat 13px -284px;}
+.input-email:focus{background-position:13px -319px;}
+.input-name:focus{background-position:13px -250px;}
+.input-phone{background:url(../images/one_sprite2.png) no-repeat 13px -356px;}
+.input-phone:focus{/* background-position:13px -393px; */ background: url(../images/one_sprite2.png) no-repeat;background-position: 13px 8px;}
+.contcats-lvl2{border-top:1px solid #ccc;margin-top:45px;padding-top:55px;}
+.contcats-lvl2 p{margin-bottom:28px;}
+.contcats-lvl2 table{border-collapse:collapse;width:100%;}
+.contcats-lvl2 table tr:nth-child(odd){background:#ececec;}
+.contcats-lvl2 table tr td:first-child{font-family:"Exo2-SemiBold";font-size:18px;padding-left:3%;width:30%;}
+.contcats-lvl2 table tr td:last-child{width:55%;}
+.contcats-lvl2 table td{line-height:21px;padding-bottom:10px;padding-top:10px;vertical-align:top;}
