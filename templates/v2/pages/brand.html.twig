@@ -1,12 +1,13 @@
 {% extends 'v2/base.html.twig' %}
 {% block title %}{{ page.metaTitle ?? (page.h1~' - кузовной центр '~page.brandName~' Детейлингофъ') }}{% endblock %}
 {% block body %}
+
+
     {% if(page.text is empty) %}
         <div class="container container2">
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-lg-12">
                     <h1 class="title">{{ page.name }}</h1>
-
                 </div>
             </div>
         </div>

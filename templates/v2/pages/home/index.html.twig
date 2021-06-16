@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ include('elements/_navigation.html.twig') }}
+{#{{ include('elements/_navigation.html.twig') }}#}
+    {{ breadcrumbs(page ?? null) }}
 {% endblock %}
 
 {% block body %}
