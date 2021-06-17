@@ -1,5 +1,5 @@
 {% extends 'v2/base.html.twig' %}
-{% block title %} {{ page.metaTitle ? page.metaTitle~' - Сервис «Мир АКПП»' : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}
+{% block title %} {{ page.metaTitle ? page.metaTitle : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}
 {% block body %}
     {% if(page.text is empty) %}
         <div class="container container2">
