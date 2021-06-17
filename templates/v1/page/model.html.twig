@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ page.metaTitle ?? (page.h1~' - кузовной центр '~page.brandName~' Детейлингофъ') }}{% endblock %}
+{% block title %} {{ page.metaTitle ? page.metaTitle~' - Сервис «Мир АКПП»' : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}
 {% block body %}
     {{ include('blocks/rating_schema.html.twig') }}
     {{ include('blocks/layout/_services_categories.html.twig') }}

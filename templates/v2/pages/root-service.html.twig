@@ -1,5 +1,5 @@
 {% extends 'v2/base.html.twig' %}
-
+{% block title %} {{ page.metaTitle ? page.metaTitle~' - Сервис «Мир АКПП»' : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}
 {% block body %}
         <div class="container container2">
                 <div class="row justify-content-center">
