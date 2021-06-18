@@ -1383,6 +1383,7 @@ h1.title{
 .cols5>.col2 .btn{font-family:"Exo2-Bold";}
 .input-email{background:url(../images/one_sprite2.png) no-repeat 13px -284px;}
 .input-email:focus{background-position:13px -319px;}
+.input-name {background: #fff url(../images/one_sprite2.png) no-repeat 13px -217px;}
 .input-name:focus{background-position:13px -250px;}
 .input-phone{background:url(../images/one_sprite2.png) no-repeat 13px -356px;}
 .input-phone:focus{/* background-position:13px -393px; */ background: url(../images/one_sprite2.png) no-repeat;background-position: 13px 8px;}
@@ -1607,9 +1608,74 @@ h1.title{
     background-color: #b5b5b5;
     color: #fff;
     border:none;
-    width: 100%;
 }
-#callback_popup_call .callback-popup-footer input[type='submit']:hover, #callback_popup .callback-popup-footer input[type='submit']:hover{
+#feedback-contacts{
+    margin-top: 30px;
+}
+#feedback-contacts input[type='submit']{
+    background-color: #b5b5b5;
+    color: #fff;
+    border:none;
+    width: 160px;
+}
+#feedback-contacts input[type='text']{
+    display: inline-block;
+    width: 100%;
+    margin: 10px;
+    height: 40px;
+    margin-bottom: 21px;
+    padding: 0 2% 0 14% !important;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#feedback-contacts select{
+    display: inline-block;
+    width: 100%;
+    margin: 10px;
+    height: 40px;
+    margin-bottom: 21px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#feedback-contacts textarea{
+    height: 147px;
+    margin-bottom: 21px;
+    padding: 2% 3%;
+    width: 70%;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 250px;
+    margin-left: 30px;
+    margin-top: 8px;
+}
+#feedback-contacts .submit-wrapper{
+    width: 66%;
+}
+#feedback-contacts .submit-wrapper input[type='submit']{
+    float: right;
+}
+
+@media (max-width: 768px) {
+    #feedback-contacts textarea{
+        width: 100%;
+        margin-left: 0;
+
+    }
+    #feedback-contacts .submit-wrapper{
+        width: 100%;
+    }
+    #feedback-contacts .submit-wrapper input[type='submit']{
+        margin-top: 20px;
+    }
+}
+
+#callback_popup_call .callback-popup-footer input[type='submit']:hover, #callback_popup .callback-popup-footer input[type='submit']:hover,
+#feedback-contacts input[type='submit']{
     color: #000;
 }
 #callback_popup_call .callback-popup-footer input[type='checkbox'], #callback_popup .callback-popup-footer input[type='checkbox']{
