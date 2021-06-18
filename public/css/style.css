@@ -1596,26 +1596,26 @@ h1.title{
 }
 
 /* pop-up формы */
-#callback_popup_call .callback-popup-body input, #callback_popup_call .callback-popup-body textarea{
+#callback_popup_call .callback-popup-body input, #callback_popup_call .callback-popup-body textarea, #callback_popup .callback-popup-body input, #callback_popup_call .callback-popup-body textarea{
     display: inline-block;
     width: 100%;
     margin: 10px 0;
 }
 
-#callback_popup_call .callback-popup-footer input[type='submit']{
+#callback_popup_call .callback-popup-footer input[type='submit'], #callback_popup .callback-popup-footer input[type='submit']{
     width: 100%;
     background-color: #b5b5b5;
     color: #fff;
     border:none;
     width: 100%;
 }
-#callback_popup_call .callback-popup-footer input[type='submit']:hover{
+#callback_popup_call .callback-popup-footer input[type='submit']:hover, #callback_popup .callback-popup-footer input[type='submit']:hover{
     color: #000;
 }
-#callback_popup_call .callback-popup-footer input[type='checkbox']{
+#callback_popup_call .callback-popup-footer input[type='checkbox'], #callback_popup .callback-popup-footer input[type='checkbox']{
     width: 20px;
 }
 
-#callback_popup_call .form-msg button.close{
+#callback_popup_call .form-msg button.close, #callback_popup .form-msg button.close{
     align-self: baseline;
 }
