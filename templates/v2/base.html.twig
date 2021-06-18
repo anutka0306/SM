@@ -47,6 +47,9 @@
 {% block footer %}
     {{ include('elements/_cartblock.html.twig') }}
     {{ include('elements/_footer.html.twig') }}
+    {{ include('elements/_perezvon.html.twig') }}
+    {{ include('v2/scripts/_comagic.html.twig') }}
+    <script type="text/javascript" src="{{ asset('js/comagic_script.js') }}"></script>
 {% endblock %}
 </body>
 </html>

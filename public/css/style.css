@@ -1393,3 +1393,229 @@ h1.title{
 .contcats-lvl2 table tr td:first-child{font-family:"Exo2-SemiBold";font-size:18px;padding-left:3%;width:30%;}
 .contcats-lvl2 table tr td:last-child{width:55%;}
 .contcats-lvl2 table td{line-height:21px;padding-bottom:10px;padding-top:10px;vertical-align:top;}
+
+/* Перезвон */
+.call-icon {
+    position: fixed;
+    z-index: 100;
+    right: 3%;
+    bottom: 5%;
+
+    display: block;
+
+    width: 86px;
+    height: 86px;
+
+    -webkit-transition: .75s;
+    -moz-transition: .75s;
+    transition: .75s;
+
+    opacity: .8;
+    -webkit-border-radius: 86px;
+    -moz-border-radius: 86px;
+    border-radius: 86px;
+    background: #bd0707 url(../images/imacall.png) no-repeat 50% 50%;
+}
+.call-icon:hover {
+    -webkit-animation: call-icon-rotate 1s infinite;
+    -moz-animation: call-icon-rotate 1s infinite;
+    -o-animation: call-icon-rotate 1s infinite;
+    animation: call-icon-rotate 1s infinite;
+
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+@-ms-keyframes call-icon-rotate {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    10% {
+        -ms-transform: rotate(3deg);
+    }
+    20% {
+        -ms-transform: rotate(-3deg);
+    }
+    30% {
+        -ms-transform: rotate(3deg);
+    }
+    40% {
+        -ms-transform: rotate(-3deg);
+    }
+    50% {
+        -ms-transform: rotate(0deg);
+    }
+}
+@-moz-keyframes call-icon-rotate {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    10% {
+        -moz-transform: rotate(3deg);
+    }
+    20% {
+        -moz-transform: rotate(-3deg);
+    }
+    30% {
+        -moz-transform: rotate(3deg);
+    }
+    40% {
+        -moz-transform: rotate(-3deg);
+    }
+    50% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes call-icon-rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    10% {
+        -webkit-transform: rotate(3deg);
+    }
+    20% {
+        -webkit-transform: rotate(-3deg);
+    }
+    30% {
+        -webkit-transform: rotate(3deg);
+    }
+    40% {
+        -webkit-transform: rotate(-3deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+@keyframes call-icon-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(3deg);
+    }
+    20% {
+        transform: rotate(-3deg);
+    }
+    30% {
+        transform: rotate(3deg);
+    }
+    40% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+}
+.call-icon.form-on-screen {
+    cursor: default;
+
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+}
+.call-icon:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+
+    content: '';
+    -webkit-transition: .75s;
+    -moz-transition: .75s;
+    transition: .75s;
+
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    border: 2px solid #bd0707;
+    -webkit-border-radius: 86px;
+    -moz-border-radius: 86px;
+    border-radius: 86px;
+}
+.call-icon.animate:after {
+    width: 106px;
+    height: 106px;
+    margin-top: -53px;
+    margin-left: -53px;
+
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+.call-icon.animate:hover:after {
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+}
+.call-icon:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+
+    width: 106px;
+    height: 106px;
+    margin-top: -53px;
+    margin-left: -53px;
+
+    content: '';
+    -webkit-transition: .75s;
+    -moz-transition: .75s;
+    transition: .75s;
+
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    border: 1px solid #bd0707;
+    -webkit-border-radius: 86px;
+    -moz-border-radius: 86px;
+    border-radius: 86px;
+}
+.call-icon.animate:before {
+    width: 126px;
+    height: 126px;
+    margin-top: -63px;
+    margin-left: -63px;
+
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+.call-icon.animate:hover:before {
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0.1;
+}
+
+/* pop-up формы */
+#callback_popup_call .callback-popup-body input, #callback_popup_call .callback-popup-body textarea{
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#callback_popup_call .callback-popup-footer input[type='submit']{
+    width: 100%;
+    background-color: #b5b5b5;
+    color: #fff;
+    border:none;
+    width: 100%;
+}
+#callback_popup_call .callback-popup-footer input[type='submit']:hover{
+    color: #000;
+}
+#callback_popup_call .callback-popup-footer input[type='checkbox']{
+    width: 20px;
+}
+
+#callback_popup_call .form-msg button.close{
+    align-self: baseline;
+}
