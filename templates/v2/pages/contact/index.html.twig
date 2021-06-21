@@ -149,7 +149,10 @@
                 url:     url, //url страницы (action_ajax_form.php)
                 type:     "POST", //метод отправки
                 dataType: "html", //формат данных
-                data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
+                data: {
+                    "some_var_name": "some_var_value"
+                },
+                //data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
                 success: function(response) { //Данные отправлены успешно
                    // let result = $.parseJSON(response);
                    // $('#result_form').html('Имя: '+result.name+'<br>Телефон: '+result.phonenumber);
