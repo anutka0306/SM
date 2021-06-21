@@ -16,7 +16,7 @@ class MailerController extends AbstractController
     public function contact_form(MailerInterface $mailer): Response
     {
         $email = (new Email())
-            ->from('anutka0306@mail.ru')
+            ->from('robot@my-side.online')
             ->to('robot@my-side.online')
             ->subject('Test email')
             ->text('This is my test email')
