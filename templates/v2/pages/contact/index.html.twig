@@ -88,7 +88,7 @@
         <div class="row">
             <div id="feedback-contacts" class="col-md-12">
                 <div class="title5 fs24">Обратная связь</div>
-                    <form class="ajax_form" action="/contact_form" method="post" id="form-contact" data-callibri_parse_form="true">
+                    <form class="ajax_form" action="" method="post" id="form-contact" data-callibri_parse_form="true">
                         <div class="row">
                             <div class="col-md-4 col-xs-12">
                                 <input type="text" name="user_name" value="" placeholder="Ваше имя" class="input-name">
@@ -124,7 +124,7 @@
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="submit-wrapper">
-                                    <input type="submit" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
+                                    <input type="button" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
                                 </div>
                             </div>
                         </div>
@@ -135,14 +135,14 @@
     </div>
 
     <script>
-        /*$( document ).ready(function() {
+        $( document ).ready(function() {
             $("#btn").click(
                 function(){
-                    sendAjaxForm('result_form', 'ajax_form', '/contact_form');
+                    sendAjaxForm('result_form', 'ajax_form', '{{ (path("contact_form")) }}');
                     return false;
                 }
             );
-        });*/
+        });
 
         function sendAjaxForm(result_form, ajax_form, url) {
             $.ajax({
