@@ -21,10 +21,16 @@ class MailerController extends AbstractController
             ->to('robot@my-side.online')
             ->subject('Test email')
             ->text('This is my test email')
-            ->html('<p>Hello here</p>');
+            ->html('<p>Сообщение со втаницы контакты:</p>
+<p>Имя отправителя: '.$_POST['user_name'] .'</p>
+<p>E-mail отправителя: '.$_POST['user_email'] .'</p>
+<p>Телефон отправителя: '.$_POST['user_phone'] .'</p>
+<p>Салон: '.$_POST['salon'] .'</p>
+<p>Сообщение: '.$_POST['comment'] .'</p>
+');
         $mailer->send($email);
 
-        return 'sended';
+        return new Response('<p>Спасибо! Ваше сообщение отправлено.</p>');
         /*return $this->render('mailer/index.html.twig', [
             'controller_name' => 'MailerController',
         ]);*/
