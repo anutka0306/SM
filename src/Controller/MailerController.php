@@ -22,7 +22,13 @@ class MailerController extends AbstractController
             ->to('robot@my-side.online')
             ->subject('Test email')
             ->text('This is my test email')
-            ->html('<p>Сообщение со втаницы контакты:</p>'.$request->get('some_var_name'));
+            ->html('<p>Сообщение со втаницы контакты:</p>
+             <p>Имя отправителя: '.$request->get("user_name") .'</p>
+<p>E-mail отправителя: '.$request->get('user_email') .'</p>
+<p>Телефон отправителя: '.$request->get('user_phone') .'</p>
+<p>Салон: '.$request->get('salon') .'</p>
+<p>Сообщение: '.$request->get('comment') .'</p>'
+            );
         $mailer->send($email);
 
         return new Response('<p>Спасибо! Ваше сообщение отправлено.</p>');
