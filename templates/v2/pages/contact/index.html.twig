@@ -91,9 +91,9 @@
                     <form class="ajax_form" action="" method="post" id="form-contact" data-callibri_parse_form="true">
                         <div class="row">
                             <div class="col-md-4 col-xs-12">
-                                <input type="text" name="user_name" value="" placeholder="Ваше имя" class="input-name">
-                                <input type="text" name="user_email" value="" placeholder="Ваш E-mail" class="input-email">
-                                <input type="text" name="user_phone" value="" placeholder="+7 (___) ___-____" class="input-phone mask-phone error">
+                                <input type="text" name="user_name"  placeholder="Ваше имя" class="input-name">
+                                <input type="text" name="user_email"  placeholder="Ваш E-mail" class="input-email">
+                                <input type="text" name="user_phone"  placeholder="+7 (___) ___-____" class="input-phone mask-phone error">
                                 <div class="form-group">
                                     <div class="form__select">
                                         <select name="salon" class="salon form-control error">
@@ -124,7 +124,7 @@
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="submit-wrapper">
-                                    <input type="button" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
+                                    <input type="submit" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,8 @@
     <script>
         $( document ).ready(function() {
             $("#btn").click(
-                function(){
+                function(event){
+                    event.preventDefault();
                     sendAjaxForm('result_form', 'ajax_form', '{{ (path("contact_form")) }}');
                     return false;
                 }
