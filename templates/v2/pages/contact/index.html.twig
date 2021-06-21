@@ -132,15 +132,18 @@
 
                 <div id="result_form"></div>
             </div>
+
     </div>
+
 
     <script>
         $( document ).ready(function() {
             $("#btn").click(
                 function(event){
                     event.preventDefault();
+                    //alert($('input[name="user_name"]').attr('name'));
                     sendAjaxForm('result_form', 'ajax_form', '{{ (path("contact_form")) }}');
-                    return false;
+                    //return false;
                 }
             );
         });
@@ -151,7 +154,7 @@
                 type:     "POST", //метод отправки
                 dataType: "html", //формат данных
 
-                data: $("#ajax_form").serialize(),  // Сеарилизуем объект
+                data: $(".ajax_form").serialize(),  // Сеарилизуем объект
                 success: function(response) { //Данные отправлены успешно
                    // let result = $.parseJSON(response);
                    // $('#result_form').html('Имя: '+result.name+'<br>Телефон: '+result.phonenumber);
