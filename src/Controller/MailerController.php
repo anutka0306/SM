@@ -23,11 +23,11 @@ class MailerController extends AbstractController
             ->subject('Test email')
             ->text('This is my test email')
             ->html('<p>Сообщение со втаницы контакты:</p>
-             <p>Имя отправителя: '.$request->get('user_name') .'</p>
-<p>E-mail отправителя: '.$request->get('user_email') .'</p>
-<p>Телефон отправителя: '.$request->get('user_phone') .'</p>
-<p>Салон: '.$request->get('salon') .'</p>
-<p>Сообщение: '.$request->get('comment') .'</p>'
+             <p>Имя отправителя: '.$request->get('user_name_contact') .'</p>
+<p>E-mail отправителя: '.$request->get('user_email_contact') .'</p>
+<p>Телефон отправителя: '.$request->get('user_phone_contact') .'</p>
+<p>Салон: '.$request->get('salon_contact') .'</p>
+<p>Сообщение: '.$request->get('comment_contact') .'</p>'
             );
         $mailer->send($email);
 
