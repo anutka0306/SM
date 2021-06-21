@@ -88,7 +88,7 @@
         <div class="row">
             <div id="feedback-contacts" class="col-md-12">
                 <div class="title5 fs24">Обратная связь</div>
-                    <form class="ajax_form" action="" method="post" id="form-contact" data-callibri_parse_form="true">
+                    <form class="ajax_form" action="/contact_form" method="post" id="form-contact" data-callibri_parse_form="true">
                         <div class="row">
                             <div class="col-md-4 col-xs-12">
                                 <input type="text" name="user_name" value="" placeholder="Ваше имя" class="input-name">
@@ -124,34 +124,41 @@
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="submit-wrapper">
-                                    <input type="submit" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true">
+                                    <input type="submit" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
                                 </div>
                             </div>
                         </div>
 
 
-
-                        <input type="hidden" name="af_action" value="0cf20bdd0cff8e99902c29064b21bb74">
-                        <input type="hidden" name="submit" value="Отправить"></form>
-
+                <div id="result_form"></div>
             </div>
-            {#<div id="comp_fc4418123e3926c3927bf930a79529c0">
-                <!--'start_frame_cache_uaqVUp'-->
-                <div id="feedback-contacts">
-                    <div class="title5 fs24">Обратная связь</div>
-                    [[!AjaxForm?
-                    &snippet=`FormIt`
-                    &form=`tpl.contact_form`
-                    &emailTpl=`mail.contact`
-                    &hooks=`email, spam, recaptchav2`
-                    &emailSubject=`Сообщение с сайта (контакты)`
-                    &emailTo=`[[+addressTo]]`
-                    &emailFrom=`info@mirakpp.ru`
-                    &validate=`user_phone:required,salon:required, g-recaptcha-response:required`
-                    &validationErrorMessage=`В форме содержатся ошибки!` &successMessage=`Сообщение успешно отправлено`
-                    ]]
-                </div>
-        </div>#}
-
     </div>
+
+    <script>
+        /*$( document ).ready(function() {
+            $("#btn").click(
+                function(){
+                    sendAjaxForm('result_form', 'ajax_form', '/contact_form');
+                    return false;
+                }
+            );
+        });*/
+
+        function sendAjaxForm(result_form, ajax_form, url) {
+            $.ajax({
+                url:     url, //url страницы (action_ajax_form.php)
+                type:     "POST", //метод отправки
+                dataType: "html", //формат данных
+                data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
+                success: function(response) { //Данные отправлены успешно
+                   // let result = $.parseJSON(response);
+                   // $('#result_form').html('Имя: '+result.name+'<br>Телефон: '+result.phonenumber);
+                    $('#result_form').html(response);
+                },
+                error: function(response) { // Данные не отправлены
+                    $('#result_form').html('Ошибка. Данные не отправлены.');
+                }
+            });
+        }
+    </script>
 {% endblock %}
