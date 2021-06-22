@@ -113,12 +113,15 @@ $(document).ready(function () {
         var comment_field = $(this).find( "textarea[name=comment]" );
         if (comment_field.length) {
             var comment = comment_field.val();
+        }else{
+            var comment = '';
         }
 
         if(name===''){alert('Заполните поле имя!'); return false;}
         else if (/[a-zA-Z]/.test(name) ) {alert('В поле Имя не могут содержаться английские буквы!'); return false;}
         else if (/[0-9]/.test(name) ) {alert('В поле Имя не могут содержаться цифры!');return false;}
         else if(phone===''){alert('Заполните поле телефон!'); return false;}
+        else if(!/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(phone)){alert('Некорретный номер телефона!'); return false;}
         else if(email_field.length && email!=='' && !pattern.test(email)){alert('Проверьте е-майл');return false;}
         else if(comment_field.length && comment.search(tags) !== -1){alert('Поле Комментарий не должно содержать тегов!');return false;}
         else if(comment_field.length && comment.search(re) !== -1){alert('Поле Комментарий не должно содержать ссылок!');return false;}
@@ -151,14 +154,39 @@ $(document).ready(function () {
                 // alert (id_ploshadki);
 
                 //return false;
+                sendAjaxPopupForm('/callback_form', name, phone, salon.val(), comment);
                 ComagicWidget.sitePhoneCall({phone:phone, group_id: id_ploshadki, delayed_call_time: t.toString()});
 
             }
+
             showSuccessMessage();
             return true;
         }
 
     });
+
+
+    function sendAjaxPopupForm(url, name, phone, salon, message) {
+        $.ajax({
+            url:     url,
+            type:     "POST", //метод отправки
+            dataType: "html", //формат данных
+
+            data: {
+                'name' : name,
+                'phone' : phone,
+                'salon' : salon,
+                'message' : message,
+            },
+            success: function(response) { //Данные отправлены успешно
+                console.log(response);
+            },
+            error: function(response) { // Данные не отправлены
+                console.log('error');
+            }
+        });
+    }
+
 
     /*показ скрытых телефонов в шапке*/
     jQuery("#header_phones_expander").click(function (e) {

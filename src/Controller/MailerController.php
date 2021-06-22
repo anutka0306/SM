@@ -50,8 +50,7 @@ class MailerController extends AbstractController
             $email = (new Email())
                 ->from('robot@my-side.online')
                 ->to('robot@my-side.online')
-                ->subject('Новое сообщение с сайта')
-                ->text('This is my test email')
+                ->subject('Новое сообщение с сайта mirakpp.ru')
                 ->html('<p>Сообщение со страницы контакты:</p>
              <p>Имя отправителя: ' . $userName . '</p>
 <p>E-mail отправителя: ' . $userEmail . '</p>
@@ -66,6 +65,25 @@ class MailerController extends AbstractController
             return new JsonResponse(['errors'=>$errors]);
         }
 
+    }
+
+
+    /**
+     * @Route("/callback_form", name="callback_form")
+     */
+    public function callback_form(Request $request, MailerInterface $mailer){
+        $email = (new Email())
+            ->from('robot@my-side.online')
+            ->to('robot@my-side.online')
+            ->subject('Заказ обратного звонка с сайта mirakpp.ru')
+            ->html('<p>Заказ обратного звонка / запись на ремонт</p>
+             <p>Имя отправителя: ' . $request->get('name') . '</p>
+            <p>Телефон отправителя: ' . $request->get('phone') . '</p>
+            <p>Салон: ' . $request->get('salon') . '</p>
+            <p>Сообщение: ' . $request->get('message') . '</p>'
+            );
+        $mailer->send($email);
+        return new JsonResponse(['success'=>'<p>Спасибо! Ваше сообщение отправлено.</p>']);
     }
 
     public function addEmail($email, ValidatorInterface $validator){
