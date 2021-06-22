@@ -64,13 +64,13 @@ class BrandCrudController extends AbstractCrudController
             IntegerField::new('brand_id', 'ID Марки')->setRequired(true),
             TextField::new('h1', 'H1'),
             TextField::new('meta_title', 'Title')->hideOnIndex(),
-            TextEditorField::new('meta_description', 'Description')->hideOnIndex(),
+            TextField::new('meta_description', 'Description')->hideOnIndex(),
             CodeEditorField::new('text', 'Текст')->hideOnIndex(),
             BooleanField::new('published', 'Опубликовано'),
             NumberField::new('rating_value', 'Рейтинг')->hideOnIndex(),
             NumberField::new('rating_count', 'Кол-во голосов')->hideOnIndex(),
             DateTimeField::new('modify_date', 'Дата обновления')->hideOnIndex(),
-            //Очень грузит
+
             AssociationField::new('pages', 'Услуги')->setFormTypeOption('choices', $pages)->onlyWhenUpdating(),
             AssociationField::new('pages', 'Услуги')->onlyOnIndex(),
            AssociationField::new('parent')->setFormTypeOption('choices', [$parents] )->setHelp('Ремонт коробки передач в Москве'),

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Brand;
+use App\Entity\Model;
 use App\Entity\PriceBrand;
 use App\Entity\PriceCategory;
 use App\Entity\PriceClass;
@@ -41,6 +42,7 @@ class AdminController extends AbstractDashboardController
             MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
             MenuItem::subMenu('Редактор страниц', 'fa fa-fw fa-file-alt')->setSubItems([
                 MenuItem::linkToCrud('Стр. Марок', 'fas fa-car', Brand::class),
+                MenuItem::linkToCrud('Стр. Моделей', 'fas fa-car', Model::class),
             ]),
             MenuItem::subMenu('Прайс лист','fa fa-fw fa-hand-holding-usd')->setSubItems([
                 MenuItem::linkToCrud('Марки', 'fas fa-car', PriceBrand::class),

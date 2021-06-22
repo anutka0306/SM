@@ -23,7 +23,8 @@ class Model extends Content
 
         return $this;
     }
-    
+
+
     public function getPriceBrand():?PriceBrand
     {
         $model = $this->getPriceModel();
