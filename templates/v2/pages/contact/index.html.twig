@@ -141,9 +141,8 @@
             $("#btn").click(
                 function(event){
                     event.preventDefault();
-                    //alert($('input[name="user_name"]').attr('name'));
+                    $('#result_form').empty();
                     sendAjaxForm('result_form', 'ajax_form', '{{ (path("contact_form")) }}');
-                    //return false;
                 }
             );
         });
@@ -156,12 +155,17 @@
 
                 data: $("#form-contact").serialize(),  // Сеарилизуем объект
                 success: function(response) { //Данные отправлены успешно
-                   // let result = $.parseJSON(response);
-                   // $('#result_form').html('Имя: '+result.name+'<br>Телефон: '+result.phonenumber);
-                    $('#result_form').html(response);
+                    let result = JSON.parse(response);
+                    if(result['errors']){
+                        result['errors'].forEach(function (error) {
+                            $('#result_form').append('<p class="alert alert-danger">' + error + '</p>');
+                        });
+                    }else if (result['success']) {
+                        $('#result_form').html('<p class="alert alert-success">'+ result['success'][0] + '</p>');
+                    }
                 },
                 error: function(response) { // Данные не отправлены
-                    $('#result_form').html('Ошибка. Данные не отправлены.');
+                    $('#result_form').html('<p class="alert alert-danger">Ошибка. Данные не отправлены.</p>');
                 }
             });
         }

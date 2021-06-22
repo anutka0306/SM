@@ -1386,7 +1386,7 @@ h1.title{
 .input-name {background: #fff url(../images/one_sprite2.png) no-repeat 13px -217px;}
 .input-name:focus{background-position:13px -250px;}
 .input-phone{background:url(../images/one_sprite2.png) no-repeat 13px -356px;}
-.input-phone:focus{/* background-position:13px -393px; */ background: url(../images/one_sprite2.png) no-repeat;background-position: 13px 8px;}
+.input-phone:focus{ background-position:13px -390px;}
 .contcats-lvl2{border-top:1px solid #ccc;margin-top:45px;padding-top:55px;}
 .contcats-lvl2 p{margin-bottom:28px;}
 .contcats-lvl2 table{border-collapse:collapse;width:100%;}
