@@ -41,9 +41,9 @@ class MailerController extends AbstractController
             $errors[] = 'Некорректный номер телефона';
         }
         else{
-            $userEmail = $this->addEmail($request->get('user_email_contact'), $this->validatorInterface);
-            $userName = $this->addName($request->get('user_name_contact'), $this->validatorInterface);
-            $userPhone = $this->addPhone($request->get('user_phone_contact'), $this->validatorInterface);
+            $userEmail = $request->get('user_email_contact');
+            $userName = $request->get('user_name_contact');
+            $userPhone = $request->get('user_phone_contact');
 
         }
         if(0 === count($errors)) {
