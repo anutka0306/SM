@@ -12,7 +12,6 @@
             <div class="col-md-4 contacts" style="margin-top: 30px;">
         <div class="col1">
 
-            <p style="font-weight: bold; color: red; font-size: 1.2rem;">2-10 января автосервисы работают в обычном режиме!</p>
             <div class="icon1-4">
                 <span>МЫ РАБОТАЕМ:</span><br>
                 <div>с 8:00 до 22:00</div>
@@ -68,14 +67,6 @@
                     <a href="tel:89019091505">8 (901) 909-15-05</a>
                 </div>
             </div>
-
-            <br />
-            <br />
-            На этой странице указаны все наши контакты, вы всегда имеете возможность связаться с нами любым приемлемым для вас способом. По ним вы можете уточнить информацию о нашей работе или согласовать сроки обслуживания и т.д.
-
-            Мы всегда рады оказать любую техническую или консультативную помощь в плане ремонта и обслуживания АКПП любых видов и моделей. Консультация наших специалистов и диагностика АКПП для всех наших клиентов БЕСПЛАТНЫЕ.
-
-            Приезжайте сразу к нам в мастерскую или заранее запишитесь на ТО АКПП по телефону.
         </div>
             </div>
 
@@ -83,91 +74,17 @@
                     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad971ef27a3f95dbb98cd921271b467aed2c339e0cecbb612714e0f7c0d1c93af&amp;width=100%25&amp;height=700&amp;lang=ru_RU&amp;scroll=true"></script>
 
             </div>
+            <div class="col-12">
+                <div class="message message2">
+                    <p>На этой странице указаны все наши контакты, вы всегда имеете возможность связаться с нами любым приемлемым для вас способом. По ним вы можете уточнить информацию о нашей работе или согласовать сроки обслуживания и т.д.</p>
+
+                    <p>Мы всегда рады оказать любую техническую или консультативную помощь в плане ремонта и обслуживания АКПП любых видов и моделей. Консультация наших специалистов и диагностика АКПП для всех наших клиентов БЕСПЛАТНЫЕ.</p>
+
+                    Приезжайте сразу к нам в мастерскую или заранее запишитесь на ТО АКПП по телефону.
+                </div>
+            </div>
         </div>
 
-        <div class="row">
-            <div id="feedback-contacts" class="col-md-12">
-                <div class="title5 fs24">Обратная связь</div>
-                    <form class="ajax_form" action="" method="post" id="form-contact" data-callibri_parse_form="true">
-                        <div class="row">
-                            <div class="col-md-4 col-xs-12">
-                                <input type="text" name="user_name_contact"  placeholder="Ваше имя" class="input-name">
-                                <input type="text" name="user_email_contact"  placeholder="Ваш E-mail" class="input-email">
-                                <input type="text" name="user_phone_contact"  placeholder="+7 (___) ___-____" class="input-phone mask-phone error">
-                                <div class="form-group">
-                                    <div class="form__select">
-                                        <select name="salon_contact" class="salon form-control error">
-                                            <option value="">Выберите автосервис*</option>
-                                            <option value="Научный">Автосервис на Научном</option>
-                                            <option value="Лобненская">Автосервис на Лобненской</option>
-                                            <option value="Севастопольский">Автосервис на Севастопольском</option>
-                                            <!--<option value="Нижегородка">Автосервис на Нижегородской</option>-->
-                                            <option value="Удальцова">Автосервис на Удальцова</option>
-                                            <!--<option value="Тест">Тест</option>-->
-                                        </select></div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-xs-12">
+       {# Here was contact form #}
 
-                                <textarea placeholder="Оставьте комментарий" name="comment_contact" id="comment_contact"></textarea>
-                                <span id="csContact" class="countsymbols"></span>
-                            </div>
-
-                            <div class="col-md-6 col-xs-12">
-                                <div class="agreement_row">
-                                <input type="checkbox" name="agreement" id="agreement" checked="" required="">
-                                <label for="agreement">
-                                    <a href="/agreement/" target="_blank">Согласен с политикой конфиденциальности</a>
-                                </label>
-                            </div>
-                            </div>
-
-                            <div class="col-md-6 col-xs-12">
-                                <div class="submit-wrapper">
-                                    <input type="submit" name="submit" value="Отправить" class="btn" data-callibri_parse_form="true" id="btn">
-                                </div>
-                            </div>
-                        </div>
-
-
-                <div id="result_form"></div>
-            </div>
-
-    </div>
-
-
-    <script>
-        $( document ).ready(function() {
-            $("#btn").click(
-                function(event){
-                    event.preventDefault();
-                    $('#result_form').empty();
-                    sendAjaxForm('result_form', 'ajax_form', '{{ (path("contact_form")) }}');
-                }
-            );
-        });
-
-        function sendAjaxForm(result_form, ajax_form, url) {
-            $.ajax({
-                url:     url, //url страницы (action_ajax_form.php)
-                type:     "POST", //метод отправки
-                dataType: "html", //формат данных
-
-                data: $("#form-contact").serialize(),  // Сеарилизуем объект
-                success: function(response) { //Данные отправлены успешно
-                    let result = JSON.parse(response);
-                    if(result['errors']){
-                        result['errors'].forEach(function (error) {
-                            $('#result_form').append('<p class="alert alert-danger">' + error + '</p>');
-                        });
-                    }else if (result['success']) {
-                        $('#result_form').html('<p class="alert alert-success">Спасибо! Ваше сообщение отправлено.</p>');
-                    }
-                },
-                error: function(response) { // Данные не отправлены
-                    $('#result_form').html('<p class="alert alert-danger">Ошибка. Данные не отправлены.</p>');
-                }
-            });
-        }
-    </script>
 {% endblock %}

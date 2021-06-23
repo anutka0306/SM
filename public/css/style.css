@@ -1368,6 +1368,10 @@ h1.title{
 .fs18{font-size:18.5px;}
 .contacts .col1>div{margin-bottom:24px;padding-left:77px;position:relative;}
 .contacts .col1>div:before{content:"";height:60px;left:0;position:absolute;top:-9px;width:60px;}
+.icon1-3 {
+    border-bottom: 1px #bd0707 solid;
+    padding-bottom: 22px;
+}
 .icon1-1:before{background:url(../images/one_sprite.png) no-repeat 0 -150px;}
 .icon1-2:before{background:url(../images/one_sprite.png) no-repeat -64px -150px;}
 .icon1-3:before{background:url(../images/one_sprite.png) no-repeat -128px -150px;}
