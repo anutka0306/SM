@@ -9,6 +9,7 @@ use App\Entity\PriceCategory;
 use App\Entity\PriceClass;
 use App\Entity\PriceModel;
 use App\Entity\PriceService;
+use App\Entity\Service;
 use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -43,6 +44,7 @@ class AdminController extends AbstractDashboardController
             MenuItem::subMenu('Редактор страниц', 'fa fa-fw fa-file-alt')->setSubItems([
                 MenuItem::linkToCrud('Стр. Марок', 'fas fa-car', Brand::class),
                 MenuItem::linkToCrud('Стр. Моделей', 'fas fa-car', Model::class),
+                MenuItem::linkToCrud('Услуги моделей','fa fa-fw fa-wrench', Service::class),
             ]),
             MenuItem::subMenu('Прайс лист','fa fa-fw fa-hand-holding-usd')->setSubItems([
                 MenuItem::linkToCrud('Марки', 'fas fa-car', PriceBrand::class),
