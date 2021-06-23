@@ -94,6 +94,7 @@ class Content implements PageInterface
     protected $published = true;
 
 
+
     public function __construct()
     {
         $this->pages = new ArrayCollection();
