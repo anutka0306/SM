@@ -39,12 +39,15 @@ class ModelCrudController extends AbstractCrudController
 
             $pages = $model = $this->getDoctrine()->getManager()->getRepository(Content::class)->findBy(['model_id' => $model[0]->getModelId()]);
         }
+        $parents = $this->getDoctrine()->getManager()->getRepository(Content::class)->findBy(['parent' => 36]);
+
         return [
             Field::new('id', 'ID')->onlyOnIndex(),
             AssociationField::new('priceModel', 'Модель прайса'),
             TextField::new('name', 'Название'),
             TextField::new('path', 'Алиас'),
-            AssociationField::new('parent'),
+            AssociationField::new('parent', 'Родитель')->onlyWhenUpdating(),
+            AssociationField::new('parent', 'Родитель')->setFormTypeOption('choices', $parents)->onlyWhenCreating(),
             TextField::new('h1', 'H1')->hideOnIndex(),
             TextField::new('metaTitle', 'Title')->hideOnIndex(),
             TextField::new('meta_description', 'Description')->hideOnIndex(),
