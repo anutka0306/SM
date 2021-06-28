@@ -10,13 +10,35 @@
           </div>
           <div class="preimblock-b">
               <img src="https://r-ms.ru/img/advantages/1.png" alt="img">
-            <p>Ремонт АКПП  дешевле, чем у дилеров до 70%.</p>
-            <span>Ремонт АКПП  дешевле, чем у дилеров до 70%.</span>
+            <p>Ремонт АКПП дешевле, чем у дилеров до 70%.</p>
+            {% if brandName|default or modelName|default %}
+                <span>Ремонт АКПП
+                    {% if brandName|default %}
+                    {{ brandName }}
+                    {% endif %}
+                    {% if modelName|default %}
+                    {{ modelName }}
+                    {% endif %}
+                     дешевле, чем у дилеров до 70%.</span>
+              {% else %}
+                <span>Ремонт АКПП дешевле, чем у дилеров до 70%.</span>
+            {% endif %}
           </div>
           <div class="preimblock-b">
               <img src="https://r-ms.ru/img/advantages/1.png" alt="img">
             <p>Гарантия 2 года</p>
-            <span>Для ремонта трансмиссии  мы используем оригинальные комплектующие, поставляемые напрямую с заводов-изготовителей. Каждая деталь подбирается под конкретную модель трансмиссионного устройства.</span>
+            {% if brandName|default or modelName|default %}
+            <span>Для ремонта трансмиссии
+                {% if brandName|default %}
+                    {{ brandName }}
+                {% endif %}
+                {% if modelName|default %}
+                    {{ modelName }}
+                {% endif %}
+                мы используем оригинальные комплектующие, поставляемые напрямую с заводов-изготовителей. Каждая деталь подбирается под конкретную модель трансмиссионного устройства.</span>
+            {% else %}
+            <span>Для ремонта трансмиссии мы используем оригинальные комплектующие, поставляемые напрямую с заводов-изготовителей. Каждая деталь подбирается под конкретную модель трансмиссионного устройства.</span>
+            {% endif %}
           </div>
         </div>
       </div>

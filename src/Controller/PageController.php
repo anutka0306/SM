@@ -17,6 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Sitemap;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\ModelRepository;
+use App\Repository\PriceModelRepository;
 
 class PageController extends AbstractController
 {
@@ -24,22 +26,31 @@ class PageController extends AbstractController
      * @var ContentRepository
      */
     protected $page_repository;
+    /**
+     * @var EntityManagerInterface
+     */
     protected $em;
+    /**
+     * @var PaginatorInterface
+     */
     protected $paginator;
 
+   protected $price_model_repository;
+
     
-    public function __construct(ContentRepository $repository, EntityManagerInterface $em, PaginatorInterface $paginator)
+    public function __construct(ContentRepository $repository, EntityManagerInterface $em, PaginatorInterface $paginator, PriceModelRepository $price_model_repository)
     {
         $this->page_repository = $repository;
         $this->em = $em;
         $this->paginator = $paginator;
+        $this->price_model_repository = $price_model_repository;
 
     }
     
     /**
      * @Route("/{token}", name="dynamic_pages",requirements={"token"= ".+\/$"})
      */
-    public function index($token, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request)
+    public function index($token, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request, PriceModelRepository $priceModelRepository)
     {
         if ( ! $page = $this->page_repository->findOnePublishedByToken($token)) {
             throw $this->createNotFoundException(sprintf('Page %s not found',$token));
@@ -50,13 +61,13 @@ class PageController extends AbstractController
         }
 
         if ($page instanceof Model) {
-            return $this->model($page);
+            return $this->model($page, $priceModelRepository);
         }
 
         if ($page instanceof Service) {
             /* echo 'Page is '.$page;
             exit();*/
-            return $this->service($page);
+            return $this->service($page, $priceModelRepository);
         }
 
         if ($page instanceof RootService) {
@@ -110,23 +121,43 @@ class PageController extends AbstractController
     
     private function brand(Brand $brand)
     {
+        $brand_name = $brand->getBrandName();
         return $this->render('v2/pages/brand.html.twig', [
             'page' => $brand,
+            'brandName' => $brand_name,
         ]);
     }
     
     
-    private function model(Model $model)
+    private function model(Model $model, PriceModelRepository $priceModelRepository)
     {
+        $brand_name = $model->getBrandName();
+        $model_id = $model->getModelId();
+        if($model_id){
+            $model_name = $priceModelRepository->find($model_id)->getName();
+        }else{
+            $model_name = null;
+        }
         return $this->render('v2/pages/model.html.twig', [
             'page' => $model,
+            'brandName' => $brand_name,
+            'modelName' => $model_name,
         ]);
     }
     
-    private function service(Service $service)
+    private function service(Service $service, PriceModelRepository $priceModelRepository)
     {
+        $brand_name = $service->getBrandName();
+        $model_id = $service->getModelId();
+        if($model_id){
+           $model_name = $priceModelRepository->find($model_id)->getName();
+        }else{
+            $model_name = null;
+        }
         return $this->render('v2/pages/service.html.twig', [
             'page' => $service,
+            'brandName' => $brand_name,
+            'modelName' => $model_name,
         ]);
     }
     

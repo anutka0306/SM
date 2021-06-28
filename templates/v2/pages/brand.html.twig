@@ -37,7 +37,7 @@
         {{ price_list(page) }}
     </div>
 
-    {{ include('elements/_advantages.html.twig') }}
+    {% include 'elements/_advantages.html.twig' with {'brandName': brandName} %}
 
 <div class="container container2">
     <div class="row justify-content-center">

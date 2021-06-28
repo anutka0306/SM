@@ -2,6 +2,7 @@
 {% block title %} {{ page.metaTitle ? page.metaTitle : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}
 
 {% block body %}
+
     <div class="container container2">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-lg-12">
@@ -17,7 +18,7 @@
         {{ price_list(page) }}
     </div>
 
-    {{ include('elements/_advantages.html.twig') }}
+    {% include 'elements/_advantages.html.twig' with {'brandName': brandName, 'modelName': modelName}  %}
 
     <div class="brands-service-block__wrapper">
         <div class="container container2">
