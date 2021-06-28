@@ -16,8 +16,8 @@
     <div class="price-list-orders__wrapper">
         {{ price_list(page) }}
     </div>
+    {{ special_offers(page.brandAndModelName) }}
     {{ include('elements/_gallery.html.twig') }}
-    {{ include('elements/_promotions.html.twig') }}
     {{ include('elements/_advantages.html.twig') }}
 
 

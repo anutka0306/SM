@@ -30,11 +30,11 @@
         </div>
     {% endif %}
 
-    {{ include('elements/_promotions.html.twig') }}
 
     <div class="price-list-orders__wrapper">
         {{ price_list(page) }}
     </div>
+    {{ special_offers(page.brandAndModelName) }}
 
     {{ include('elements/_advantages.html.twig') }}
 
