@@ -1689,3 +1689,17 @@ h1.title{
 #callback_popup_call .form-msg button.close, #callback_popup .form-msg button.close{
     align-self: baseline;
 }
+
+/* Sitemap html*/
+.sitemap-container li{
+    width: 100%;
+    text-align: left;
+}
+
+.sitemap-container .pagination span.page, .sitemap-container .pagination span.current{
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #498ac4;
+    margin: 0 10px;
+    background: aliceblue;
+}
