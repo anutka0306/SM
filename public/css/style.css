@@ -1251,6 +1251,12 @@ button {
 .catalog-v2 img {
     margin: 20px auto;
 }
+.catalog-v2 li{
+    display: list-item;
+    width: 100%;
+    text-align: left;
+    list-style-type: square !important;
+}
 .big-image {
     box-shadow: -5px 5px 15px rgb(138 136 136 / 47%);
 }
