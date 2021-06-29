@@ -1703,3 +1703,11 @@ h1.title{
     margin: 0 10px;
     background: aliceblue;
 }
+
+/* Vakancii */
+.vacansy_new_block_opis ul li{
+    display: list-item;
+    width: 100%;
+    text-align: left;
+    list-style-type: square !important;
+}

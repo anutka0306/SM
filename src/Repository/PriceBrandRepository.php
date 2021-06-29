@@ -72,12 +72,14 @@ class PriceBrandRepository extends ServiceEntityRepository
         $rsm->addScalarResult('name', 'name', 'string');
         $rsm->addScalarResult('code', 'code', 'string');
         $rsm->addScalarResult('path', 'path', 'string');
+        $rsm->addScalarResult('published', 'published', 'int');
 
 
             $sql = "
             SELECT b.name, b.code, c.path
             FROM price__brand b
             LEFT JOIN content c on b.id = c.brand_id 
+            WHERE c.published > 0
             GROUP BY b.name
             ORDER BY b.name ASC
         ";
