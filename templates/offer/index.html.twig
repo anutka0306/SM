@@ -2,6 +2,7 @@
 
 {% block title %}Акции, скидки, предложения{% endblock %}
 {% block seoDescription %} Акции mirakpp {% endblock %}
+{% block canonical %}{{ app.request.schemeAndHttpHost~'/offers' }}{% endblock %}
 
 {% block body %}
     {% block breadcrumbs %}
