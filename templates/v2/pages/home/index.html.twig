@@ -12,7 +12,16 @@
 
 {% block body %}
     {{ service_text(page.text) }}
-    {{ include('v2/blocks/section/auto-brands.html.twig') }}
+    {#{{ include('v2/blocks/section/auto-brands.html.twig') }}#}
+    <div class="brands-service-block__wrapper">
+        <div class="container container2">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    {{ brands_service_block() }}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="price-list-orders__wrapper">
         {{ price_list(page) }}
     </div>
