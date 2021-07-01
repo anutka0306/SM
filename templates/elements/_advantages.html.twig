@@ -6,7 +6,19 @@
           <div class="preimblock-b">
               <img src="https://r-ms.ru/img/advantages/1.png" alt="img">
             <p>Специализированный сервис</p>
-            <span>«Мир АКПП» - это сеть специализированных автосервисов в Москве по ремонту и обслуживанию АКПП всех видов.</span>
+              {% if brandName|default or modelName|default %}
+                <span>«Мир АКПП» - это сеть специализированных автосервисов в Москве по ремонту и обслуживанию АКПП
+                    {% if brandName|default %}
+                        {{ brandName }}
+                    {% endif %}
+                    {% if modelName|default %}
+                        {{ modelName }}
+                    {% endif %}
+                всех видов.</span>
+              {% else %}
+                <span>«Мир АКПП» - это сеть специализированных автосервисов в Москве по ремонту и обслуживанию АКПП
+                всех видов.</span>
+              {% endif %}
           </div>
           <div class="preimblock-b">
               <img src="https://r-ms.ru/img/advantages/1.png" alt="img">
