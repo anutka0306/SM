@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210610110544 extends AbstractMigration
+final class Version20210702122412 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,9 +20,6 @@ final class Version20210610110544 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE salon_price_service (salon_id INT NOT NULL, price_service_id INT NOT NULL, INDEX IDX_34273524C91BDE4 (salon_id), INDEX IDX_342735259D4A6E2 (price_service_id), PRIMARY KEY(salon_id, price_service_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE salon_price_service ADD CONSTRAINT FK_34273524C91BDE4 FOREIGN KEY (salon_id) REFERENCES salon (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE salon_price_service ADD CONSTRAINT FK_342735259D4A6E2 FOREIGN KEY (price_service_id) REFERENCES price__services (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE before_after ADD CONSTRAINT FK_4459C2111BC38CF0 FOREIGN KEY (price_model_id) REFERENCES price__model (id)');
         $this->addSql('CREATE INDEX IDX_4459C2111BC38CF0 ON before_after (price_model_id)');
         $this->addSql('ALTER TABLE config CHANGE name name VARCHAR(255) NOT NULL, CHANGE value value VARCHAR(255) DEFAULT NULL');
@@ -48,7 +45,7 @@ final class Version20210610110544 extends AbstractMigration
         $this->addSql('DROP INDEX name ON price__brand');
         $this->addSql('ALTER TABLE price__categories ADD CONSTRAINT FK_5E61FA06727ACA70 FOREIGN KEY (parent_id) REFERENCES price__categories (id)');
         $this->addSql('CREATE INDEX IDX_5E61FA06727ACA70 ON price__categories (parent_id)');
-        $this->addSql('ALTER TABLE price__model ADD increase DOUBLE PRECISION NOT NULL, CHANGE id id INT AUTO_INCREMENT NOT NULL, CHANGE name name VARCHAR(255) NOT NULL, CHANGE code code VARCHAR(255) NOT NULL, CHANGE name_rus name_rus VARCHAR(255) DEFAULT NULL, CHANGE brand_id brand_id INT DEFAULT NULL, CHANGE class class INT NOT NULL');
+        $this->addSql('ALTER TABLE price__model CHANGE id id INT AUTO_INCREMENT NOT NULL, CHANGE name name VARCHAR(255) NOT NULL, CHANGE code code VARCHAR(255) NOT NULL, CHANGE name_rus name_rus VARCHAR(255) DEFAULT NULL, CHANGE brand_id brand_id INT DEFAULT NULL, CHANGE class class INT NOT NULL, CHANGE increase increase DOUBLE PRECISION NOT NULL');
         $this->addSql('CREATE INDEX IDX_10343615ED4B199F ON price__model (class)');
         $this->addSql('CREATE INDEX brand_id ON price__model (brand_id)');
         $this->addSql('ALTER TABLE price__services DROP FOREIGN KEY price__services_ibfk_1');
@@ -65,7 +62,6 @@ final class Version20210610110544 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE salon_price_service');
         $this->addSql('ALTER TABLE before_after DROP FOREIGN KEY FK_4459C2111BC38CF0');
         $this->addSql('DROP INDEX IDX_4459C2111BC38CF0 ON before_after');
         $this->addSql('DROP INDEX name ON config');
@@ -80,7 +76,7 @@ final class Version20210610110544 extends AbstractMigration
         $this->addSql('ALTER TABLE content DROP FOREIGN KEY FK_FEC530A9727ACA70');
         $this->addSql('ALTER TABLE content DROP FOREIGN KEY FK_FEC530A9ED5CA9E6');
         $this->addSql('ALTER TABLE content DROP FOREIGN KEY FK_FEC530A9159FD1F4');
-        $this->addSql('ALTER TABLE content CHANGE text text TEXT CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE sort sort INT DEFAULT 0 NOT NULL, CHANGE published published TINYINT(1) DEFAULT \'1\' NOT NULL, CHANGE name name VARCHAR(250) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE h1 h1 VARCHAR(191) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`, CHANGE meta_description meta_description VARCHAR(1024) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE rating_value rating_value DOUBLE PRECISION UNSIGNED DEFAULT \'4.8\' NOT NULL, CHANGE page_type page_type VARCHAR(15) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`');
+        $this->addSql('ALTER TABLE content CHANGE text text TEXT CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE sort sort INT DEFAULT 0 NOT NULL, CHANGE published published TINYINT(1) DEFAULT \'1\' NOT NULL, CHANGE name name VARCHAR(250) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE h1 h1 VARCHAR(191) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`, CHANGE meta_description meta_description VARCHAR(1024) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`, CHANGE rating_value rating_value DOUBLE PRECISION UNSIGNED DEFAULT \'4.8\' NOT NULL, CHANGE page_type page_type VARCHAR(15) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`');
         $this->addSql('DROP INDEX idx_fec530a9ed5ca9e6 ON content');
         $this->addSql('CREATE INDEX service_id ON content (service_id)');
         $this->addSql('DROP INDEX idx_fec530a9159fd1f4 ON content');
@@ -101,7 +97,7 @@ final class Version20210610110544 extends AbstractMigration
         $this->addSql('ALTER TABLE price__model DROP FOREIGN KEY FK_1034361544F5D008');
         $this->addSql('DROP INDEX IDX_10343615ED4B199F ON price__model');
         $this->addSql('DROP INDEX brand_id ON price__model');
-        $this->addSql('ALTER TABLE price__model DROP increase, CHANGE id id INT UNSIGNED AUTO_INCREMENT NOT NULL, CHANGE class class INT DEFAULT 1 NOT NULL, CHANGE brand_id brand_id INT NOT NULL, CHANGE name name VARCHAR(200) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE code code VARCHAR(200) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE name_rus name_rus VARCHAR(200) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`');
+        $this->addSql('ALTER TABLE price__model CHANGE id id INT UNSIGNED AUTO_INCREMENT NOT NULL, CHANGE class class INT DEFAULT 1 NOT NULL, CHANGE brand_id brand_id INT NOT NULL, CHANGE name name VARCHAR(200) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE code code VARCHAR(200) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE name_rus name_rus VARCHAR(200) CHARACTER SET utf8 DEFAULT NULL COLLATE `utf8_general_ci`, CHANGE increase increase DOUBLE PRECISION DEFAULT \'0.00\' NOT NULL');
         $this->addSql('ALTER TABLE price__services DROP FOREIGN KEY FK_DE4397F5159FD1F4');
         $this->addSql('ALTER TABLE price__services DROP FOREIGN KEY FK_DE4397F5159FD1F4');
         $this->addSql('ALTER TABLE price__services CHANGE price_category_id price_category_id INT DEFAULT NULL, CHANGE published published TINYINT(1) DEFAULT \'1\' NOT NULL, CHANGE pagetitle pagetitle VARCHAR(255) CHARACTER SET utf8 DEFAULT \'\'\'\'\'\' NOT NULL COLLATE `utf8_general_ci`');
