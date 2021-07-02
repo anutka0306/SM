@@ -10,6 +10,7 @@ use App\Entity\PriceClass;
 use App\Entity\PriceModel;
 use App\Entity\PriceService;
 use App\Entity\Service;
+use App\Entity\SpecialOffer;
 use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -52,7 +53,8 @@ class AdminController extends AbstractDashboardController
                 MenuItem::linkToCrud('Категории услуг', 'fa fa-fw fa-folder', PriceCategory::class),
                 MenuItem::linkToCrud('Услуги', 'fa fa-fw fa-wrench', PriceService::class),
                 MenuItem::linkToCrud('Классы', 'fa fa-fw fa-hand-holding-usd', PriceClass::class),
-            ])
+            ]),
+            MenuItem::linkToCrud('Акции', 'fa fa-money', SpecialOffer::class),
         ];
     }
 }
