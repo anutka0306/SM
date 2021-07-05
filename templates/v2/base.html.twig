@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {{ page.metaTitle ? page.metaTitle : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}</title>
+    <meta name="yandex-verification" content="1de9202024ac6323" />
+    {{ include('v2/scripts/_schema.html.twig') }}
+    {{ include('v2/scripts/_comagic.html.twig') }}
+    {{ include('v2/scripts/_google_analitics.html.twig') }}
     <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <meta name="description" content="{% block seoDescription %}{{ page.metaDescription ? page.metaDescription : (page.h1~' по низким ценам! ⌚ 8:00 - 22:00 Без Выходных! 🚗 Эвакуатор. ☑ Гарантия! ♦ Сервис «Мир АКПП» ☎ Звоните 8 (495) 150-69-21')}} {% endblock %}">
     <link rel="canonical" href="{% block canonical %}{{ app.request.schemeAndHttpHost~page.path }}{% endblock %}"/>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block ogTitle %} {{ page.metaTitle ? page.metaTitle : (page.h1~' - Сервис «Мир АКПП»') }} {% endblock %}"/>
+    <meta property="og:description" content="{% block ogDescription %}{{ page.metaDescription ? page.metaDescription : (page.h1~' по низким ценам! ⌚ 8:00 - 22:00 Без Выходных! 🚗 Эвакуатор. ☑ Гарантия! ♦ Сервис «Мир АКПП» ☎ Звоните 8 (495) 150-69-21')}} {% endblock %}"/>
+    <meta property="og:url" content="https://mirakpp.ru/"/>
     {# Run `composer require symfony/webpack-encore-bundle`
        and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
@@ -28,6 +37,8 @@
     {% endblock %}
 </head>
 <body>
+{{ include('v2/scripts/_yandex_metrics.html.twig') }}
+{{ include('v2/scripts/_liveinternet.html.twig') }}
 {{ include('elements/_header.html.twig') }}
 {{ include('elements/_menu_mobile.html.twig') }}
 <div class="header-margin"></div>
@@ -49,7 +60,6 @@
     {{ include('elements/_cartblock.html.twig') }}
     {{ include('elements/_footer.html.twig') }}
     {{ include('elements/_perezvon.html.twig') }}
-    {{ include('v2/scripts/_comagic.html.twig') }}
     <script type="text/javascript" src="{{ asset('js/comagic_script.js') }}"></script>
     <script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
