@@ -6,7 +6,8 @@
 {% block seoDescription %} {{ offer.metaDescription ? offer.metaDescription : (offer.name~'  ⌚ 8:00 - 22:00 Без Выходных! 🚗 Эвакуатор. ☑ Гарантия! ♦ Сервис «Мир АКПП» ☎ Звоните 8 (495) 150-69-21')}}
 {% endblock %}
 {% block canonical %}{{ app.request.schemeAndHttpHost~'/offer/'~offer.slug }}{% endblock %}
-{% block ogTitle %} {{ offer.metaDescription ? offer.metaDescription : (offer.name~'  ⌚ 8:00 - 22:00 Без Выходных! 🚗 Эвакуатор. ☑ Гарантия! ♦ Сервис «Мир АКПП» ☎ Звоните 8 (495) 150-69-21')}} {% endblock %}
+{% block ogTitle %} {{ offer.metaTitle ? offer.metaTitle : (offer.name~' - Сервис «Мир АКПП»') }} {% endblock %}
+{% block ogDescription %}{{ offer.metaDescription ? offer.metaDescription : (offer.name~'  ⌚ 8:00 - 22:00 Без Выходных! 🚗 Эвакуатор. ☑ Гарантия! ♦ Сервис «Мир АКПП» ☎ Звоните 8 (495) 150-69-21')}} {% endblock %}
 
 {% block body %}
     {% block breadcrumbs %}
