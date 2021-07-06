@@ -305,6 +305,9 @@ button {
 }
 .video-background-content-body-button {
     text-align: center;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,.6);
+    padding: 20px 0;
 }
 .video-background-content-body-button button{
     border-radius: 30px;
@@ -628,6 +631,27 @@ button {
     text-align: center;
     background-color: #b51726;
     border-radius: 5px;
+}
+.whatsapp-button{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    color: #fff !important;
+    text-align: center;
+    background-color: #e85a5a;
+    border-radius: 5px;
+    font-size: 12px !important;
+    margin-top: 10px;
+    display: flex;
+    height: 25px;
+    align-items: center;
+    font-weight: 600;
+}
+
+.whatsapp-button:after{
+    font-family: "FontAwesome";
+    content: "\f232";
+    color: #ffffff;
 }
 .price-title a{
     border: 1px solid #a7a7a7;
