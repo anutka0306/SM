@@ -195,7 +195,7 @@ class MailerController extends AbstractController
     public function getTo($salon){
         switch ($salon) {
             case 'Научный':
-                return 'anya-programmist@qmotors.ru, robot@my-side.online';/*'webmaster@qmotors.ru, service@tokyogarage.ru, direktor@tokyogarage.ru, master@tokyogarage.ru,kostin@qmotors.ru';*/
+                return 'anya-programmist@qmotors.ru, webmaster@qmotors.ru, service@tokyogarage.ru, direktor@tokyogarage.ru, master@tokyogarage.ru,kostin@qmotors.ru';
             case 'Лобненская':
                 return 'info@mirakpp.ru, maxima-x@yandex.ru, service@qmotors.ru, direktor@qmotors.ru, webmaster@qmotors.ru, w.ww@mail.ru,kostin@qmotors.ru,kostin@qmotors.ru';
             case 'Севастопольский':
@@ -205,7 +205,7 @@ class MailerController extends AbstractController
             case 'Удальцова':
                 return '2direktor@qmotors.ru,2service@qmotors.ru,2master@qmotors.ru,webmaster@qmotors.ru,kostin@qmotors.ru';
             default:
-                return 'anya-programmist@qmotors.ru, robot@my-side.online';
+                return 'anya-programmist@qmotors.ru, robot@my-side.online, webmaster@qmotors.ru';
         }
     }
 

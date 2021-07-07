@@ -19,6 +19,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ModelRepository;
 use App\Repository\PriceModelRepository;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class PageController extends AbstractController
 {
@@ -194,4 +196,6 @@ class PageController extends AbstractController
             'page' => $vacancy,
         ]);
     }
+
+
 }

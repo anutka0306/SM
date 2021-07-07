@@ -26,7 +26,7 @@
         {{ price_list(page) }}
     </div>
     {{ special_offers(page.brandAndModelName) }}
-    {{ include('elements/_gallery.html.twig') }}
+    {{ include('elements/_gallery.html.twig', {gallery:gallery}) }}
     {{ include('elements/_advantages.html.twig') }}
 
 
