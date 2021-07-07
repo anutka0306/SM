@@ -28,6 +28,7 @@ class MailerController extends AbstractController
      */
     public function contact_form(Request $request, MailerInterface $mailer)
     {
+        $to = $this->getTo($request->get('salon_contact'));
         $errors = array();
         $userName ='';
         $userEmail = '';
@@ -50,7 +51,7 @@ class MailerController extends AbstractController
         if(0 === count($errors)) {
             $email = (new Email())
                 ->from('robot@my-side.online')
-                ->to('robot@my-side.online')
+                ->to($to/*'robot@my-side.online'*/)
                 ->subject('Новое сообщение с сайта mirakpp.ru')
                 ->html('<p>Сообщение со страницы контакты:</p>
              <p>Имя отправителя: ' . $userName . '</p>
@@ -95,9 +96,9 @@ class MailerController extends AbstractController
         }
         if(0 === count($errors)) {
             $email = (new Email())
-                ->from('robot@my-side.online')
-                ->to('robot@my-side.online')
-                ->subject('Новое сообщение с сайта mirakpp.ru')
+                ->from('robot@my-side.online') //otklik@qmotors.ru
+                ->to('robot@my-side.online')   //2hr@qmotors.ru
+                ->subject('Отклик на вакансию с сайта mirakpp.ru')
                 ->html('<p>Отклик на вакансию:</p>
              <p>Имя отправителя: ' . $userName . '</p>
 <p>E-mail отправителя: ' . $userEmail . '</p>
@@ -118,9 +119,11 @@ class MailerController extends AbstractController
      * @Route("/callback_form", name="callback_form")
      */
     public function callback_form(Request $request, MailerInterface $mailer){
+        $to = $this->getTo($request->get('salon'));
+
         $email = (new Email())
             ->from('robot@my-side.online')
-            ->to('robot@my-side.online')
+            ->to($to/*'robot@my-side.online'*/)
             ->subject('Заказ обратного звонка с сайта mirakpp.ru')
             ->html('<p>Заказ обратного звонка / запись на ремонт</p>
              <p>Имя отправителя: ' . $request->get('name') . '</p>
@@ -180,6 +183,23 @@ class MailerController extends AbstractController
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function getTo($salon){
+        switch ($salon) {
+            case 'Научный':
+                return 'anya-programmist@qmotors.ru, robot@my-side.online';/*'webmaster@qmotors.ru, service@tokyogarage.ru, direktor@tokyogarage.ru, master@tokyogarage.ru,kostin@qmotors.ru';*/
+            case 'Лобненская':
+                return 'info@mirakpp.ru, maxima-x@yandex.ru, service@qmotors.ru, direktor@qmotors.ru, webmaster@qmotors.ru, w.ww@mail.ru,kostin@qmotors.ru,kostin@qmotors.ru';
+            case 'Севастопольский':
+                return 'webmaster@qmotors.ru,service@rovercity.ru,master@rovercity.ru,direktor@rovercity.ru,kostin@qmotors.ru';
+            case 'Нижегородка':
+                return 'webmaster@qmotors.ru,5service@qmotors.ru,5direktor@qmotors.ru,5master@qmotors.ru,kostin@qmotors.ru';
+            case 'Удальцова':
+                return '2direktor@qmotors.ru,2service@qmotors.ru,2master@qmotors.ru,webmaster@qmotors.ru,kostin@qmotors.ru';
+            default:
+                return 'kostin@qmotors.ru,webmaster@qmotors.ru';
         }
     }
 
