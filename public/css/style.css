@@ -649,9 +649,11 @@ button {
 }
 
 .whatsapp-button:after{
-    font-family: "FontAwesome";
     content: "\f232";
-    color: #ffffff;
+    font-family: "Font Awesome 5 Brands";
+    font-size: 14px;
+    color: #fff;
+    padding-left: 7px;
 }
 .price-title a{
     border: 1px solid #a7a7a7;
