@@ -1765,6 +1765,13 @@ h1.title{
     text-align: left;
     list-style-type: square !important;
 }
+hr.vacansy_line{
+    background-color: #E85A5A;
+    height: 2px;
+    width: 50%;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
 
 /* All Offers */
 .post-slide__all-offers{

@@ -46,6 +46,19 @@ class PageController extends AbstractController
         $this->price_model_repository = $price_model_repository;
 
     }
+
+    /**
+     * @Route("/vakancies/{vakancy}", name="vakancy", requirements={"token"= "\/.+\/$"})
+     */
+    public function vakancy($vakancy, ContentRepository $repository):Response{
+        $vakancy = '/vakancies/'.$vakancy.'/';
+        if ( ! $page = $this->page_repository->findOnePublishedByToken($vakancy)) {
+            throw $this->createNotFoundException(sprintf('Page %s not found',$vakancy));
+        }
+        return $this->render('v2/pages/vacansy/item.html.twig', [
+            'page' => $page,
+        ]);
+    }
     
     /**
      * @Route("/{token}", name="dynamic_pages",requirements={"token"= ".+\/$"})
@@ -177,7 +190,7 @@ class PageController extends AbstractController
     
     private function vacancy(Vacancy $vacancy)
     {
-        return $this->render('v2/pages/vacancy.html.twig', [
+        return $this->render('v2/pages/vacansy/index.html.twig', [
             'page' => $vacancy,
         ]);
     }
