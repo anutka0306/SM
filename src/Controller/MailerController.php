@@ -28,7 +28,7 @@ class MailerController extends AbstractController
      */
     public function contact_form(Request $request, MailerInterface $mailer)
     {
-        $to = 'anya-programmist@qmotors.ru';
+        $to = explode(',',$this->getTo($request->get('salon')), 2 );
         $errors = array();
         $userName ='';
         $userEmail = '';
@@ -49,18 +49,22 @@ class MailerController extends AbstractController
 
         }
         if(0 === count($errors)) {
-            $email = (new Email())
-                ->from('robot@my-side.online')
-                ->to($to/*'robot@my-side.online'*/)
-                ->subject('Новое сообщение с сайта mirakpp.ru')
-                ->html('<p>Сообщение со страницы контакты:</p>
-             <p>Имя отправителя: ' . $userName . '</p>
-<p>E-mail отправителя: ' . $userEmail . '</p>
-<p>Телефон отправителя: ' . $userPhone . '</p>
-<p>Салон: ' . $request->get('salon_contact') . '</p>
-<p>Сообщение: ' . $request->get('comment_contact') . '</p>'
-                );
-            $mailer->send($email);
+
+            foreach ($to as $recipient){
+                $email = (new Email())
+                    ->from('robot@my-side.online')
+                    ->to($recipient)
+                    ->subject('Новое сообщение с сайта mirakpp.ru')
+                    ->html('<p>Сообщение со страницы контакты:</p>
+                     <p>Имя отправителя: ' . $userName . '</p>
+                    <p>E-mail отправителя: ' . $userEmail . '</p>
+                    <p>Телефон отправителя: ' . $userPhone . '</p>
+                    <p>Салон: ' . $request->get('salon_contact') . '</p>
+                    <p>Сообщение: ' . $request->get('comment_contact') . '</p>'
+                            );
+                        $mailer->send($email);
+            }
+
 
             return new JsonResponse(['success'=>'<p>Спасибо! Ваше сообщение отправлено.</p>']);
         }else{
@@ -119,20 +123,21 @@ class MailerController extends AbstractController
      * @Route("/callback_form", name="callback_form")
      */
     public function callback_form(Request $request, MailerInterface $mailer){
-        /*$to = $this->getTo($request->get('salon'));*/
-        $to = 'anya-programmist@qmotors.ru';
-
-        $email = (new Email())
-            ->from('robot@my-side.online')
-            ->to($to/*'robot@my-side.online'*/)
-            ->subject('Заказ обратного звонка с сайта mirakpp.ru')
-            ->html('<p>Заказ обратного звонка / запись на ремонт</p>
+        $to = explode(',',$this->getTo($request->get('salon')), 2 );
+        foreach ($to as $recipient){
+            $email = (new Email())
+                ->from('robot@my-side.online')
+                ->to((string)$recipient)
+                ->subject('Заказ обратного звонка с сайта mirakpp.ru')
+                ->html('<p>Заказ обратного звонка / запись на ремонт</p>
              <p>Имя отправителя: ' . $request->get('name') . '</p>
             <p>Телефон отправителя: ' . $request->get('phone') . '</p>
             <p>Салон: ' . $request->get('salon') . '</p>
             <p>Сообщение: ' . $request->get('message') . '</p>'
-            );
-        $mailer->send($email);
+                );
+            $mailer->send($email);
+        }
+
         return new JsonResponse(['success'=>'<p>Спасибо! Ваше сообщение отправлено.</p>']);
     }
 
