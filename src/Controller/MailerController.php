@@ -28,7 +28,7 @@ class MailerController extends AbstractController
      */
     public function contact_form(Request $request, MailerInterface $mailer)
     {
-        $to = $this->getTo($request->get('salon_contact'));
+        $to = 'anya-programmist@qmotors.ru';
         $errors = array();
         $userName ='';
         $userEmail = '';
