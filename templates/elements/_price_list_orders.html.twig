@@ -27,7 +27,7 @@
                     {% if service.path %}
                     <a href="{{ service.path }}">{{ service.nameInPriceList ?? service.name }}</a>
                     {% elseif service.slug %}
-                           <a style="color:blue" href="{{ service.slug }}">{{ service.nameInPriceList ?? service.name }}</a>
+                           <a {#style="color:blue"#} href="{{ service.slug }}">{{ service.nameInPriceList ?? service.name }}</a>
                         {% else %}
                         <span style="color: red">{{ service.nameInPriceList ?? service.name }}</span>
                     {% endif %}
