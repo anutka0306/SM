@@ -119,7 +119,8 @@ class MailerController extends AbstractController
      * @Route("/callback_form", name="callback_form")
      */
     public function callback_form(Request $request, MailerInterface $mailer){
-        $to = $this->getTo($request->get('salon'));
+        /*$to = $this->getTo($request->get('salon'));*/
+        $to = 'anya-programmist@qmotors.ru';
 
         $email = (new Email())
             ->from('robot@my-side.online')
