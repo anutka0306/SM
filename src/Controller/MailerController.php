@@ -28,7 +28,7 @@ class MailerController extends AbstractController
      */
     public function contact_form(Request $request, MailerInterface $mailer)
     {
-        $to = explode(',',$this->getTo($request->get('salon')), 2 );
+        $to = explode(',',$this->getTo($request->get('salon')) );
         $errors = array();
         $userName ='';
         $userEmail = '';
@@ -123,7 +123,7 @@ class MailerController extends AbstractController
      * @Route("/callback_form", name="callback_form")
      */
     public function callback_form(Request $request, MailerInterface $mailer){
-        $to = explode(',',$this->getTo($request->get('salon')), 2 );
+        $to = explode(',',$this->getTo($request->get('salon')) );
         foreach ($to as $recipient){
             $email = (new Email())
                 ->from('robot@my-side.online')
