@@ -52,7 +52,7 @@ class MailerController extends AbstractController
 
             foreach ($to as $recipient){
                 $email = (new Email())
-                    ->from('webmaster@qmotors.ru')
+                    ->from('robot@mirakpp.ru')
                     ->to($recipient)
                     ->subject('Новое сообщение с сайта mirakpp.ru')
                     ->html('<p>Сообщение со страницы контакты:</p>
@@ -100,7 +100,7 @@ class MailerController extends AbstractController
         }
         if(0 === count($errors)) {
             $email = (new Email())
-                ->from('otklik@qmotors.ru') //otklik@qmotors.ru
+                ->from('robot@mirakpp.ru') //otklik@qmotors.ru
                 ->to('2hr@qmotors.ru')   //2hr@qmotors.ru
                 ->subject('Отклик на вакансию с сайта mirakpp.ru')
                 ->html('<p>Отклик на вакансию:</p>
@@ -126,7 +126,7 @@ class MailerController extends AbstractController
         $to = explode(',',$this->getTo($request->get('salon')) );
         foreach ($to as $recipient){
             $email = (new Email())
-                ->from('webmaster@qmotors.ru')
+                ->from('robot@mirakpp.ru')
                 ->to((string)$recipient)
                 ->subject('Заказ обратного звонка с сайта mirakpp.ru')
                 ->html('<p>Заказ обратного звонка / запись на ремонт</p>
