@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /
 Disallow: /agreement/
 Disallow: /*utm_
 Disallow: /*_openstat

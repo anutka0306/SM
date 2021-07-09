@@ -133,7 +133,7 @@ class MailerController extends AbstractController
              <p>Имя отправителя: ' . $request->get('name') . '</p>
             <p>Телефон отправителя: ' . $request->get('phone') . '</p>
             <p>Салон: ' . $request->get('salon') . '</p>
-            <p>Сообщение: ' . $request->get('message') . '</p>' 
+            <p>Сообщение: ' . $request->get('message') . '</p>'
                 );
             $mailer->send($email);
         }
