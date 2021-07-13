@@ -1,0 +1,16 @@
+0
+services_block
+s:2660:"<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="price-list-category nav-link  active " id="v-pills-brands1-tab" data-toggle="pill" href="#v-pills-brands1" role="tab" aria-controls="v-pills-brands1" aria-selected="true">Ремонт трансмиссии</a>
+            <a class="price-list-category nav-link " id="v-pills-brands2-tab" data-toggle="pill" href="#v-pills-brands2" role="tab" aria-controls="v-pills-brands2" aria-selected="true">МКПП</a>
+            <a class="price-list-category nav-link " id="v-pills-brands3-tab" data-toggle="pill" href="#v-pills-brands3" role="tab" aria-controls="v-pills-brands3" aria-selected="true">АКПП</a>
+            <a class="price-list-category nav-link " id="v-pills-brands4-tab" data-toggle="pill" href="#v-pills-brands4" role="tab" aria-controls="v-pills-brands4" aria-selected="true">Сцепление</a>
+            <a class="price-list-category nav-link " id="v-pills-brands5-tab" data-toggle="pill" href="#v-pills-brands5" role="tab" aria-controls="v-pills-brands5" aria-selected="true">Редуктор</a>
+            <a class="price-list-category nav-link " id="v-pills-brands6-tab" data-toggle="pill" href="#v-pills-brands6" role="tab" aria-controls="v-pills-brands6" aria-selected="true">Раздатка</a>
+            <a class="price-list-category nav-link " id="v-pills-brands7-tab" data-toggle="pill" href="#v-pills-brands7" role="tab" aria-controls="v-pills-brands7" aria-selected="true">АКПП Замена масла</a>
+            <a class="price-list-category nav-link " id="v-pills-brands8-tab" data-toggle="pill" href="#v-pills-brands8" role="tab" aria-controls="v-pills-brands8" aria-selected="true">МКПП ТО</a>
+            <a class="price-list-category nav-link " id="v-pills-brands9-tab" data-toggle="pill" href="#v-pills-brands9" role="tab" aria-controls="v-pills-brands9" aria-selected="true">Раздатка и мосты</a>
+            <a class="price-list-category nav-link " id="v-pills-brands10-tab" data-toggle="pill" href="#v-pills-brands10" role="tab" aria-controls="v-pills-brands10" aria-selected="true">Ремонт мехатроника</a>
+            <a class="price-list-category nav-link " id="v-pills-brands11-tab" data-toggle="pill" href="#v-pills-brands11" role="tab" aria-controls="v-pills-brands11" aria-selected="true">Ремонт DSG</a>
+            <a class="price-list-category nav-link " id="v-pills-brands12-tab" data-toggle="pill" href="#v-pills-brands12" role="tab" aria-controls="v-pills-brands12" aria-selected="true">Диагностика DSG</a>
+    </div>";

@@ -18,7 +18,7 @@ class AntibotExtension extends AbstractExtension
         ];
     }
 
-    public function antibot(){
+    public function antibot():Response{
         if (session_status() == PHP_SESSION_NONE)
             session_start();
 
